@@ -1,4 +1,3 @@
-doctype
 html
 	head
 		link(rel='stylesheet', href='https://fonts.googleapis.com/icon?family=Roboto')
@@ -7,7 +6,14 @@ html
 	body.fill-screen
 		.card
 			.inline
-				img(src='/arch.svg', alt='Arch Linux', height='64px', width='64px')
+				img(src='/rpi.svg', alt='Raspberry Pi', height='64px', width='64px')
 			.inline
 				h2 RPI Server
 				p #{ip}
+			.clearfix
+			br
+			p.title.left memory
+			p.title.right #{memory}%
+			.clearfix
+			.bar-wrapper
+				.bar(style=`width:${memory}%;`)
