@@ -3,7 +3,7 @@ html
 		link(rel='stylesheet', href='https://fonts.googleapis.com/icon?family=Roboto')
 		link(rel='stylesheet', href='/style.css')
 		title RPI Server
-	body.fill-screen
+	body
 		.card
 			.inline
 				img(src='/rpi.svg', alt='Raspberry Pi', height='64px', width='64px')
@@ -12,8 +12,8 @@ html
 				p #{ip}
 			.clearfix
 			br
-			p.title.left memory
-			p.title.right #{memory}%
+			p.small.left memory
+			p.small.right #{memory}%
 			.clearfix
 			.bar-wrapper
 				.bar(style=`width:${memory}%;`)
