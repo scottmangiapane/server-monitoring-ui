@@ -2,7 +2,7 @@
   "name": "rpi-webserver",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -17,6 +17,10 @@
   },
   "homepage": "https://github.com/scottmangiapane/rpi-webserver#readme",
   "dependencies": {
-    "express": "^4.16.2"
+    "express": "^4.16.2",
+    "ip": "^1.1.5",
+    "jade": "^1.11.0",
+    "onoff": "^1.1.9",
+    "path": "^0.12.7"
   }
 }

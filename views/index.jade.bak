@@ -1,0 +1,22 @@
+doctype
+html
+	head
+		link(rel='stylesheet', href='https://fonts.googleapis.com/icon?family=Roboto')
+		link(rel='stylesheet', href='/style.css')
+		title RPI Server
+	body.fill-screen
+		.card
+			.inline
+				img(src='/arch.svg', alt='Arch Linux', height='64px', width='64px')
+			.inline
+				h2
+					| RPI Server
+					h2
+			p #{net.address}
+			p #{net.netmask}
+			p #{net.family}
+			p #{net.mac}
+			p #{net.internal}
+			p #{free}
+			p #{total}
+
