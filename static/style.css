@@ -34,7 +34,7 @@ p {
 		#288ae2 75%,
 		#288ae2
 	);
-	background-size: 1rem 1rem;
+	background-size: 2rem 2rem;
 	border-radius: 0.25rem 0 0 0.25rem;
 	height: 1rem;
 }
@@ -89,6 +89,6 @@ p {
 	}
 
 	100% {
-		background-position: 1rem;
+		background-position: 2rem;
 	}
 }
