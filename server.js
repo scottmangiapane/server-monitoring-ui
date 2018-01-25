@@ -34,11 +34,13 @@ server.listen(8443, () => {
 // setup websockets
 
 let clients = {};
+let data = {};
 
 const io = require('socket.io')(server);
 
 io.on('connection', (client) => {
 	console.log('client ' + client.id + ' has connected');
+	client.emit('update', data);
 	clients[client.id] = client;
 	client.on('diconnect', () => {
 		console.log('client ' + client.id + ' has disconnected');
@@ -46,7 +48,7 @@ io.on('connection', (client) => {
 	});
 });
 
-setInterval(() => {
+getData = () => {
 	// ip
 	const address = ip.address();
 	// memory
@@ -63,8 +65,13 @@ setInterval(() => {
 	loadavg[0].text = '1 minute';
 	loadavg[1].text = '5 minutes';
 	loadavg[2].text = '15 minutes';
+	return { address: address, loadavg: loadavg, memory: memory };
+};
+
+setInterval(() => {
+	data = getData();
 	// send data to clients
 	for (const key in clients) {
-		clients[key].emit('update', { address: address, loadavg: loadavg, memory: memory });
+		clients[key].emit('update', data);
 	}
-}, 1000);
+}, 5000);
