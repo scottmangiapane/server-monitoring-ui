@@ -1,0 +1,48 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Roboto"/>
+		<link rel="stylesheet" href="/style.css"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<title>RPI Server</title>
+	</head>
+	<body>
+		<div id="app">
+			<div class="card">
+				<div class="inline">
+					<img src="/rpi.svg" alt="Raspberry Pi" height="64px" width="64px"/>
+				</div>
+				<div class="inline">
+					<h2>RPI Server</h2>
+					<p v-cloak>{{ address }}</p>
+					<p v-if="false">Loading...</p>
+				</div>
+				<div class="clearfix"></div>
+				<div v-cloak>
+					<br/>
+					<p class="small left">memory</p>
+					<p class="small right">{{ memory }} %</p>
+					<div class="clearfix"></div>
+					<div class="bar-wrapper">
+						<div class="bar" v-bind:style="{ width: memory + '%' }"></div>
+					</div>
+				</div>
+			</div>
+			<div class="card" v-cloak>
+				<p class="bold">CPU loadavg / #CPUs</p>
+				<br>
+				<div v-for="i in loadavg" class="inline">
+					<p class="small">&nbsp;&nbsp;{{ i.text }}: {{ i.value }}%&nbsp;&nbsp;</p>
+					<div class="bar-wrapper">
+						<div v-if="i.value >= 100" class="bar bar-error" style="width: 100%">
+						</div>
+						<div v-else class="bar" v-bind:style="{ width: i.value + '%' }">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.13/vue.min.js"></script>
+		<script src="/socket.io/socket.io.js"></script>
+		<script src="/client.js"></script>
+	</body>
+</html>
