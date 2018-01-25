@@ -16,27 +16,27 @@
 					<p v-cloak>{{ address }}</p>
 					<p v-if="false">Loading...</p>
 				</div>
-				<div class="clearfix"></div>
-				<div v-cloak>
-					<br/>
+			</div>
+			<div v-cloak>
+				<div class="card">
+					<p class="bold">Average load per CPU</p>
+					<br>
+					<div v-for="i in loadavg" class="inline">
+						<p class="small">&nbsp;&nbsp;{{ i.text }}: {{ i.value }}%&nbsp;&nbsp;</p>
+						<div class="bar-wrapper">
+							<div v-if="i.value >= 100" class="bar bar-error" style="width: 100%">
+							</div>
+							<div v-else class="bar" v-bind:style="{ width: i.value + '%' }">
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="card">
 					<p class="small left">memory</p>
-					<p class="small right">{{ memory }} %</p>
+					<p class="small right">{{ memory }}%</p>
 					<div class="clearfix"></div>
 					<div class="bar-wrapper">
 						<div class="bar" v-bind:style="{ width: memory + '%' }"></div>
-					</div>
-				</div>
-			</div>
-			<div class="card" v-cloak>
-				<p class="bold">CPU loadavg / #CPUs</p>
-				<br>
-				<div v-for="i in loadavg" class="inline">
-					<p class="small">&nbsp;&nbsp;{{ i.text }}: {{ i.value }}%&nbsp;&nbsp;</p>
-					<div class="bar-wrapper">
-						<div v-if="i.value >= 100" class="bar bar-error" style="width: 100%">
-						</div>
-						<div v-else class="bar" v-bind:style="{ width: i.value + '%' }">
-						</div>
 					</div>
 				</div>
 			</div>
