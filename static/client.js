@@ -18,10 +18,13 @@ const chart = new Chart(ctx, {
 		labels: [],
 		datasets: [{
 			label: '',
+			backgroundColor: 'rgba(76, 175, 80, 0.4)',
+			borderColor: 'rgba(76, 175, 80, 1)',
 			data: []
 		}]
 	},
 	options: {
+		events: [],
 		legend: {
 			display: false,
 		},
@@ -32,7 +35,13 @@ const chart = new Chart(ctx, {
 			}],
 			yAxes: [{
 				ticks: {
-					beginAtZero: true
+					beginAtZero: true,
+					callback: (value) => {
+						if (value % 1 === 0) {
+							return value + '%';
+						}
+					},
+					suggestedMax: 5
 				}
 			}]
 		}
@@ -47,11 +56,11 @@ socket.on('update', (data) => {
 	app.address = data.address;
 	app.loadavg = data.loadavg;
 	app.memory = data.memory;
-	if (chart.data.datasets[0].data.length > 20) {
-		chart.data.labels.shift();
+	if (chart.data.datasets[0].data.length < 20) {
+		chart.data.labels.push('');
+	} else {
 		chart.data.datasets[0].data.shift();
 	}
-	chart.data.labels.push('');
 	chart.data.datasets[0].data.push(data.node);
 	chart.update();
 });

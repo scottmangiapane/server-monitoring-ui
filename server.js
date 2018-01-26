@@ -74,7 +74,6 @@ setInterval(() => {
 	ps.stdout.on('data', (value) => {
 		node = parseFloat(value) / cpus.length;
 	});
-	console.log(node);
 	// rebuild data object
 	data = { address: address, loadavg: loadavg, memory: memory, node: node };
 	// send data to clients
