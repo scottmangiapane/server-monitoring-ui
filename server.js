@@ -1,3 +1,4 @@
+const { spawn } = require('child_process');
 const express = require('express');
 const fs = require('fs');
 const https = require('https');
@@ -35,6 +36,7 @@ server.listen(8443, () => {
 
 let clients = {};
 let data = {};
+let node;
 
 const io = require('socket.io')(server);
 
@@ -48,7 +50,9 @@ io.on('connection', (client) => {
 	});
 });
 
-getData = () => {
+// collect analytics
+
+setInterval(() => {
 	// ip
 	const address = ip.address();
 	// memory
@@ -58,20 +62,23 @@ getData = () => {
 	// loadavg
 	const cpus = os.cpus();
 	const loadavg = os.loadavg();
-	for (let i in loadavg) {
+	for (const i in loadavg) {
 		const value = Math.round(100 * loadavg[i] / cpus.length);
 		loadavg[i] = { value: value };
 	}
 	loadavg[0].text = '1 minute';
 	loadavg[1].text = '5 minutes';
 	loadavg[2].text = '15 minutes';
-	return { address: address, loadavg: loadavg, memory: memory };
-};
-
-setInterval(() => {
-	data = getData();
+	// CPU usage
+	const ps = spawn('sh', ['-c', 'ps -A -o pcpu | tail -n+2 | paste -sd+ | bc']);
+	ps.stdout.on('data', (value) => {
+		node = parseFloat(value) / cpus.length;
+	});
+	console.log(node);
+	// rebuild data object
+	data = { address: address, loadavg: loadavg, memory: memory, node: node };
 	// send data to clients
 	for (const key in clients) {
 		clients[key].emit('update', data);
 	}
-}, 5000);
+}, 1000);

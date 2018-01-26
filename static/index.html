@@ -19,6 +19,10 @@
 			</div>
 			<div v-cloak>
 				<div class="card">
+					<p class="bold">CPU usage</p>
+					<canvas id="chart"></canvas>
+				</div>
+				<div class="card">
 					<p class="bold">Average load per CPU</p>
 					<br>
 					<div v-for="i in loadavg" class="inline">
@@ -41,6 +45,7 @@
 				</div>
 			</div>
 		</div>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.13/vue.min.js"></script>
 		<script src="/socket.io/socket.io.js"></script>
 		<script src="/client.js"></script>
