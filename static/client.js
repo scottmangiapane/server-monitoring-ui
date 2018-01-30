@@ -3,11 +3,9 @@
 const app = new Vue({
 	el: '#app',
 	data: {
-		address: 'Loading...',
-		loadavg: 0,
-		memory: 0,
+		loadavg: 0
 	}
-})
+});
 
 // set up chart
 
@@ -53,9 +51,7 @@ const chart = new Chart(ctx, {
 const socket = io();
 
 socket.on('update', (data) => {
-	app.address = data.address;
 	app.loadavg = data.loadavg;
-	app.memory = data.memory;
 	if (chart.data.datasets[0].data.length < 20) {
 		chart.data.labels.push('');
 	} else {

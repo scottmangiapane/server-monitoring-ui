@@ -1,0 +1,35 @@
+html
+	head
+		link(rel='stylesheet', href='https://fonts.googleapis.com/icon?family=Roboto')
+		link(rel='stylesheet', href='/style.css')
+		meta(name='viewport', content='width=device-width, initial-scale=1')
+		title RPI Server
+	body
+		#app
+			.card
+				.inline
+					img(src='/rpi.svg', alt='Raspberry Pi', height='64px', width='64px')
+				.inline
+					h2 RPI Server
+					p #{ address }
+			div(v-if='false')
+				.card
+					p Loading...
+			div(v-cloak='')
+				.card
+					p.bold CPU usage
+					br
+					canvas#chart
+				.card
+					p.bold Average load per CPU
+					br
+					.inline(v-for='i in loadavg')
+						p.small   {{ i.text }}: {{ i.value }}%  
+						.bar-wrapper
+							.bar.bar-error(v-if='i.value >= 100', style='width: 100%')
+							.bar(v-else='', v-bind:style="{ width: i.value + '%' }")
+		script(src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js')
+		script(src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.13/vue.min.js')
+		script(src='/socket.io/socket.io.js')
+		script(src='/client.js')
+

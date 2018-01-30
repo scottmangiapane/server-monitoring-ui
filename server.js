@@ -21,12 +21,18 @@ redirect.listen(8080, () => {
 // run https server
 
 const app = express();
-const privateKey  = fs.readFileSync('./sslcert/privkey.pem', 'utf8');
-const certificate = fs.readFileSync('./sslcert/fullchain.pem', 'utf8');
-const credentials = { key: privateKey, cert: certificate };
+const key = fs.readFileSync('./sslcert/privkey.pem', 'utf8');
+const cert = fs.readFileSync('./sslcert/fullchain.pem', 'utf8');
+const credentials = { key: key, cert: cert };
 const server = https.createServer(credentials, app);
 
+app.set('view engine', 'pug');
+app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, 'static')));
+
+app.get('/', (req, res) => {
+	res.render('index', { address: ip.address() });
+});
 
 server.listen(8443, () => {
 	console.log('HTTPS server running on 8443');
@@ -53,13 +59,12 @@ io.on('connection', (client) => {
 // collect analytics
 
 setInterval(() => {
-	// ip
-	const address = ip.address();
-	// memory
-	const free = os.freemem();
-	const total = os.totalmem();
-	const memory = Math.round(100 * (total - free) / total);
-	// loadavg
+	// CPU usage
+	const ps = spawn('sh', ['-c', 'ps -A -o pcpu | tail -n+2 | paste -sd+ | bc']);
+	ps.stdout.on('data', (value) => {
+		node = parseFloat(value) / cpus.length;
+	});
+	// average load
 	const cpus = os.cpus();
 	const loadavg = os.loadavg();
 	for (const i in loadavg) {
@@ -69,13 +74,8 @@ setInterval(() => {
 	loadavg[0].text = '1 minute';
 	loadavg[1].text = '5 minutes';
 	loadavg[2].text = '15 minutes';
-	// CPU usage
-	const ps = spawn('sh', ['-c', 'ps -A -o pcpu | tail -n+2 | paste -sd+ | bc']);
-	ps.stdout.on('data', (value) => {
-		node = parseFloat(value) / cpus.length;
-	});
 	// rebuild data object
-	data = { address: address, loadavg: loadavg, memory: memory, node: node };
+	data = { node: node, loadavg: loadavg };
 	// send data to clients
 	for (const key in clients) {
 		clients[key].emit('update', data);
