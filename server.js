@@ -5,6 +5,7 @@ const https = require('https');
 const ip = require('ip');
 const os = require('os');
 const path = require('path');
+const socket = require('socket.io');
 
 // run http server
 
@@ -44,7 +45,7 @@ let clients = {};
 let data = {};
 let node;
 
-const io = require('socket.io')(server);
+const io = socket(server);
 
 io.on('connection', (client) => {
 	console.log('client ' + client.id + ' has connected');

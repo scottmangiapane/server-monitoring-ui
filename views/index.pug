@@ -28,8 +28,8 @@ html
 						.bar-wrapper
 							.bar.bar-error(v-if='i.value >= 100', style='width: 100%')
 							.bar(v-else='', v-bind:style="{ width: i.value + '%' }")
-		script(src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js')
-		script(src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.13/vue.min.js')
+		script(src='/library/chart.min.js')
+		script(src='/library/vue.min.js')
 		script(src='/socket.io/socket.io.js')
 		script(src='/client.js')
 
