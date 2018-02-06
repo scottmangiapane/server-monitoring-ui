@@ -5,7 +5,19 @@ const https = require('https');
 const ip = require('ip');
 const os = require('os');
 const path = require('path');
+const si = require('systeminformation');
 const socket = require('socket.io');
+
+let info = {};
+
+// build static info object
+
+si.osInfo((o) => {
+	info.distro = o.distro;
+	info.release = o.release;
+	info.kernel = o.kernel;
+	info.arch = o.arch;
+});
 
 // run http server
 
@@ -32,7 +44,13 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, 'static')));
 
 app.get('/', (req, res) => {
-	res.render('index', { address: ip.address() });
+	res.render('index', {
+		address: ip.address(),
+		distro: info.distro,
+		release: info.release,
+		kernel: info.kernel,
+		arch: info.arch
+	});
 });
 
 server.listen(8443, () => {
@@ -43,27 +61,29 @@ server.listen(8443, () => {
 
 let clients = {};
 let data = {};
-let node;
 
 const io = socket(server);
 
 io.on('connection', (client) => {
-	console.log('client ' + client.id + ' has connected');
 	client.emit('update', data);
 	clients[client.id] = client;
 	client.on('diconnect', () => {
-		console.log('client ' + client.id + ' has disconnected');
 		delete clients[client.id];
 	});
 });
 
-// collect analytics
+// build dynamic data object
 
 setInterval(() => {
+	// CPU temperature
+	si.cpuTemperature((o) => {
+		o.main = Math.round(o.main);
+		data.temp = o.main;
+	});
 	// CPU usage
 	const ps = spawn('sh', ['-c', 'ps -A -o pcpu | tail -n+2 | paste -sd+ | bc']);
 	ps.stdout.on('data', (value) => {
-		node = parseFloat(value) / cpus.length;
+		data.node = parseFloat(value) / cpus.length;
 	});
 	// average load
 	const cpus = os.cpus();
@@ -75,8 +95,18 @@ setInterval(() => {
 	loadavg[0].text = '1 minute';
 	loadavg[1].text = '5 minutes';
 	loadavg[2].text = '15 minutes';
-	// rebuild data object
-	data = { node: node, loadavg: loadavg };
+	data.loadavg = loadavg;
+	// memory
+	si.mem((o) => {
+		o.active = Math.round(o.active / 1000000);
+		o.total = Math.round(o.total / 1000000);
+		o.swapused = Math.round(o.swapused / 1000000);
+		o.swaptotal = Math.round(o.swaptotal / 1000000);
+		data.memUsed = o.active;
+		data.memTotal = o.total;
+		data.swapUsed = o.swapused;
+		data.swapTotal = o.swaptotal;
+	});
 	// send data to clients
 	for (const key in clients) {
 		clients[key].emit('update', data);

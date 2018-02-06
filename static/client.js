@@ -3,7 +3,12 @@
 const app = new Vue({
 	el: '#app',
 	data: {
-		loadavg: 0
+		temp: 0,
+		loadavg: 0,
+		memUsed: 0,
+		memTotal: 0,
+		swapUsed: 0,
+		swapTotal: 0
 	}
 });
 
@@ -51,7 +56,12 @@ const chart = new Chart(ctx, {
 const socket = io();
 
 socket.on('update', (data) => {
+	app.temp = data.temp;
 	app.loadavg = data.loadavg;
+	app.memUsed = data.memUsed;
+	app.memTotal = data.memTotal;
+	app.swapUsed = data.swapUsed;
+	app.swapTotal = data.swapTotal;
 	if (chart.data.datasets[0].data.length < 20) {
 		chart.data.labels.push('');
 	} else {

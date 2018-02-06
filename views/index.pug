@@ -11,25 +11,58 @@ html
 					img(src='/rpi.svg', alt='Raspberry Pi', height='64px', width='64px')
 				.inline
 					h2 RPI Server
-					p #{ address }
+					p.left #{ address }
+				.clearfix
+				br
+				hr
+				br
+				.inline
+					p.small Distro
+					p.bold.left #{ distro }
+					.clearfix
+					p.small Release
+					p.bold.left #{ release }
+					.clearfix
+				.inline
+				.inline
+					p.small Kernel
+					p.bold.left #{ kernel }
+					.clearfix
+					p.small Arch
+					p.bold.left #{ arch }
+					.clearfix
 			div(v-if='false')
 				.card
 					p Loading...
-			div(v-cloak='')
+			div(v-cloak)
 				.card
-					p.bold CPU usage
+					p.bold(v-if='temp > 0') CPU Usage ({{ temp }}°)
+					p.bold(v-else) CPU Usage
 					br
 					canvas#chart
 				.card
-					p.bold Average load per CPU
+					p.bold Average Load Per CPU
 					br
 					.inline(v-for='i in loadavg')
 						p.small   {{ i.text }}: {{ i.value }}%  
 						.bar-wrapper
 							.bar.bar-error(v-if='i.value >= 100', style='width: 100%')
 							.bar(v-else='', v-bind:style="{ width: i.value + '%' }")
+				.card
+					p.bold Memory Usage
+					br
+					p.small.left memory
+					p.small.right {{ memUsed }} / {{ memTotal }} MB
+					.clearfix
+					.bar-wrapper
+						.bar(v-bind:style="{ width: (100 * memUsed / memTotal) + '%' }")
+					br
+					p.small.left swap
+					p.small.right {{ swapUsed }} / {{ swapTotal }} MB
+					.clearfix
+					.bar-wrapper
+						.bar(v-bind:style="{ width: (100 * swapUsed / swapTotal) + '%' }")
 		script(src='/library/chart.min.js')
 		script(src='/library/vue.min.js')
 		script(src='/socket.io/socket.io.js')
 		script(src='/client.js')
-
