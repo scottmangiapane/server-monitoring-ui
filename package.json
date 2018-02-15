@@ -1,5 +1,5 @@
 {
-  "name": "rpi-webserver",
+  "name": "server-monitoring",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/scottmangiapane/rpi-webserver.git"
+    "url": "git+https://github.com/scottmangiapane/server-monitoring.git"
   },
   "author": "Scott Mangiapane",
   "license": "GPL-3.0",
   "bugs": {
-    "url": "https://github.com/scottmangiapane/rpi-webserver/issues"
+    "url": "https://github.com/scottmangiapane/server-monitoring/issues"
   },
-  "homepage": "https://github.com/scottmangiapane/rpi-webserver#readme",
+  "homepage": "https://github.com/scottmangiapane/server-monitoring#readme",
   "dependencies": {
     "express": "^4.16.2",
     "fs": "0.0.1-security",
