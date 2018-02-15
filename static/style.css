@@ -4,7 +4,7 @@
 }
 
 h2 {
-	color: 202020;
+	color: #202020;
 	font-family: 'Roboto', sans-serif;
 	font-size: 24px;
 	line-height: 36px;
@@ -64,11 +64,6 @@ p {
 	width: 100%;
 }
 
-.bold {
-	color: 202020;
-	font-weight: bold;
-}
-
 .card {
 	background-color: white;
 	border-radius: 2px;
@@ -81,6 +76,10 @@ p {
 
 .clearfix {
 	clear: both;
+}
+
+.dark {
+	color: #202020;
 }
 
 .inline {
@@ -125,6 +124,7 @@ p {
 	}
 
 	.card {
-		margin: 1px auto;
+		box-shadow: none;
+		margin: 0px auto;
 	}
 }

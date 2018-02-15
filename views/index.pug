@@ -18,30 +18,30 @@ html
 				br
 				.inline
 					p.small Distro
-					p.bold.left #{ distro }
+					p.dark.left #{ distro }
 					.clearfix
 					p.small Release
-					p.bold.left #{ release }
+					p.dark.left #{ release }
 					.clearfix
 				.inline
 				.inline
 					p.small Kernel
-					p.bold.left #{ kernel }
+					p.dark.left #{ kernel }
 					.clearfix
 					p.small Arch
-					p.bold.left #{ arch }
+					p.dark.left #{ arch }
 					.clearfix
 			div(v-if='false')
 				.card
 					p Loading...
 			div(v-cloak)
 				.card
-					p.bold(v-if='temp > 0') CPU Usage ({{ temp }}°)
-					p.bold(v-else) CPU Usage
+					p.dark(v-if='temp > 0') CPU Usage ({{ temp }}°)
+					p.dark(v-else) CPU Usage
 					br
 					canvas#chart
 				.card
-					p.bold Average Load Per CPU
+					p.dark Average Load Per CPU
 					br
 					.inline(v-for='i in loadavg')
 						p.small   {{ i.text }}: {{ i.value }}%  
@@ -49,7 +49,7 @@ html
 							.bar.bar-error(v-if='i.value >= 100', style='width: 100%')
 							.bar(v-else='', v-bind:style="{ width: i.value + '%' }")
 				.card
-					p.bold Memory Usage
+					p.dark Memory Usage
 					br
 					p.small.left memory
 					p.small.right {{ memUsed }} / {{ memTotal }} MB
