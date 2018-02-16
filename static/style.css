@@ -58,9 +58,6 @@ p {
 .bar-wrapper {
 	background-color: #f1f1f1;
 	border-radius: 0.25rem;
-	font-size: 10px;
-	line-height: 15px;
-	text-align: left;
 	width: 100%;
 }
 
@@ -71,7 +68,6 @@ p {
 	margin: 12px auto;
 	max-width: 400px;
 	padding: 24px;
-	text-align: center;
 }
 
 .clearfix {
@@ -90,6 +86,10 @@ p {
 
 .left {
 	float: left;
+}
+
+.left-text {
+	text-align: left;
 }
 
 .right {

@@ -3,15 +3,16 @@ html
 		link(rel='stylesheet', href='https://fonts.googleapis.com/icon?family=Roboto')
 		link(rel='stylesheet', href='/style.css')
 		meta(name='viewport', content='width=device-width, initial-scale=1')
-		title RPI Server
+		title Node.js Server
 	body
 		#app
 			.card
 				.inline
-					img(src='/rpi.svg', alt='Raspberry Pi', height='64px', width='64px')
+					img(src='/logo.svg', alt='OS Logo', height='64px', width='64px')
 				.inline
-					h2 RPI Server
-					p.left #{ address }
+					.left-text
+						h2 Node.js Server
+						p #{ address }
 				.clearfix
 				br
 				hr
