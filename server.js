@@ -2,9 +2,9 @@ const { spawn } = require('child_process');
 const express = require('express');
 const fs = require('fs');
 const https = require('https');
-const ip = require('ip');
 const os = require('os');
 const path = require('path');
+const publicIp = require('public-ip');
 const si = require('systeminformation');
 const socket = require('socket.io');
 
@@ -12,7 +12,11 @@ let info = {};
 
 // build static info object
 
-si.osInfo((o) => {
+publicIp.v4().then(ip => {
+	info.ip = ip;
+});
+
+si.osInfo(o => {
 	info.distro = o.distro;
 	info.release = o.release;
 	info.kernel = o.kernel;
@@ -45,7 +49,7 @@ app.use(express.static(path.join(__dirname, 'static')));
 
 app.get('/', (req, res) => {
 	res.render('index', {
-		address: ip.address(),
+		address: info.ip,
 		distro: info.distro,
 		release: info.release,
 		kernel: info.kernel,
@@ -64,7 +68,7 @@ let data = {};
 
 const io = socket(server);
 
-io.on('connection', (client) => {
+io.on('connection', client => {
 	client.emit('update', data);
 	clients[client.id] = client;
 	client.on('diconnect', () => {
@@ -76,13 +80,13 @@ io.on('connection', (client) => {
 
 setInterval(() => {
 	// CPU temperature
-	si.cpuTemperature((o) => {
+	si.cpuTemperature(o => {
 		o.main = Math.round(o.main);
 		data.temp = o.main;
 	});
 	// CPU usage
 	const ps = spawn('sh', ['-c', 'ps -A -o pcpu | tail -n+2 | paste -sd+ | bc']);
-	ps.stdout.on('data', (value) => {
+	ps.stdout.on('data', value => {
 		data.node = parseFloat(value) / cpus.length;
 	});
 	// average load
@@ -97,7 +101,7 @@ setInterval(() => {
 	loadavg[2].text = '15 minutes';
 	data.loadavg = loadavg;
 	// memory
-	si.mem((o) => {
+	si.mem(o => {
 		o.active = Math.round(o.active / 1000000);
 		o.total = Math.round(o.total / 1000000);
 		o.swapused = Math.round(o.swapused / 1000000);
