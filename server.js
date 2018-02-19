@@ -1,6 +1,8 @@
 const { spawn } = require('child_process');
 const express = require('express');
+const forceSSL = require('express-force-ssl');
 const fs = require('fs');
+const http = require('http');
 const https = require('https');
 const os = require('os');
 const path = require('path');
@@ -9,6 +11,53 @@ const si = require('systeminformation');
 const socket = require('socket.io');
 
 let info = {};
+
+// run webserver
+
+const app = express();
+const httpServer = http.createServer(app);
+const httpsServer = https.createServer({
+	key: fs.readFileSync('./sslcert/privkey.pem', 'utf8'),
+	cert: fs.readFileSync('./sslcert/fullchain.pem', 'utf8')
+}, app);
+
+app.use(forceSSL);
+app.use(express.static(path.join(__dirname, 'static')));
+
+app.set('view engine', 'pug');
+app.set('views', path.join(__dirname, 'views'));
+
+app.get('/', (req, res) => {
+	res.render('index', {
+		address: info.ip,
+		distro: info.distro,
+		release: info.release,
+		kernel: info.kernel,
+		arch: info.arch
+	});
+});
+
+httpServer.listen(8080, () => {
+	console.log('HTTP server running on 8080');
+});
+httpsServer.listen(8443, () => {
+	console.log('HTTPS server running on 8443');
+});
+
+// setup websockets
+
+let clients = {};
+let data = {};
+
+const io = socket(httpsServer);
+
+io.on('connection', client => {
+	client.emit('update', data);
+	clients[client.id] = client;
+	client.on('diconnect', () => {
+		delete clients[client.id];
+	});
+});
 
 // build static info object
 
@@ -21,59 +70,6 @@ si.osInfo(o => {
 	info.release = o.release;
 	info.kernel = o.kernel;
 	info.arch = o.arch;
-});
-
-// run http server
-
-const redirect = express();
-
-redirect.all('*', (req, res) => {
-	return res.redirect("https://" + req.headers.host + req.url);
-});
-
-redirect.listen(8080, () => {
-	console.log('HTTP server running on 8080');
-});
-
-// run https server
-
-const app = express();
-const key = fs.readFileSync('./sslcert/privkey.pem', 'utf8');
-const cert = fs.readFileSync('./sslcert/fullchain.pem', 'utf8');
-const credentials = { key: key, cert: cert };
-const server = https.createServer(credentials, app);
-
-app.set('view engine', 'pug');
-app.set('views', path.join(__dirname, 'views'));
-app.use(express.static(path.join(__dirname, 'static')));
-
-app.get('/', (req, res) => {
-	res.render('index', {
-		address: info.ip,
-		distro: info.distro,
-		release: info.release,
-		kernel: info.kernel,
-		arch: info.arch
-	});
-});
-
-server.listen(8443, () => {
-	console.log('HTTPS server running on 8443');
-});
-
-// setup websockets
-
-let clients = {};
-let data = {};
-
-const io = socket(server);
-
-io.on('connection', client => {
-	client.emit('update', data);
-	clients[client.id] = client;
-	client.on('diconnect', () => {
-		delete clients[client.id];
-	});
 });
 
 // build dynamic data object
