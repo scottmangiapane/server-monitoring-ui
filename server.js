@@ -37,6 +37,10 @@ app.get('/', (req, res) => {
 	});
 });
 
+app.get('*', (req, res) => {
+	res.status(404).render('404');
+});
+
 httpServer.listen(8080, () => {
 	console.log('HTTP server running on 8080');
 });
