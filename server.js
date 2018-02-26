@@ -1,14 +1,12 @@
 const { spawn } = require('child_process');
 const express = require('express');
-const forceSSL = require('express-force-ssl');
 const fs = require('fs');
 const http = require('http');
-const https = require('https');
 const os = require('os');
 const path = require('path');
 const publicIp = require('public-ip');
-const si = require('systeminformation');
 const socket = require('socket.io');
+const si = require('systeminformation');
 
 let info = {};
 
@@ -16,12 +14,7 @@ let info = {};
 
 const app = express();
 const httpServer = http.createServer(app);
-const httpsServer = https.createServer({
-	key: fs.readFileSync('./sslcert/privkey.pem', 'utf8'),
-	cert: fs.readFileSync('./sslcert/fullchain.pem', 'utf8')
-}, app);
 
-app.use(forceSSL);
 app.use(express.static(path.join(__dirname, 'static')));
 
 app.set('view engine', 'pug');
@@ -41,11 +34,8 @@ app.get('*', (req, res) => {
 	res.status(404).render('404');
 });
 
-httpServer.listen(8080, () => {
-	console.log('HTTP server running on 8080');
-});
-httpsServer.listen(8443, () => {
-	console.log('HTTPS server running on 8443');
+httpServer.listen(3000, () => {
+	console.log('Server running on 3000');
 });
 
 // setup websockets
@@ -53,7 +43,7 @@ httpsServer.listen(8443, () => {
 let clients = {};
 let data = {};
 
-const io = socket(httpsServer);
+const io = socket(httpServer);
 
 io.on('connection', client => {
 	client.emit('update', data);
