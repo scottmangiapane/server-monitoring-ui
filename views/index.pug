@@ -1,17 +1,17 @@
 html
 	head
 		link(rel='stylesheet', href='https://fonts.googleapis.com/icon?family=Roboto')
-		link(rel='stylesheet', href='/style.css')
+		link(rel='stylesheet', href='/status/style.css')
 		meta(name='viewport', content='width=device-width, initial-scale=1')
-		title Node.js Server
+		title Node Server
 	body
 		#app
 			.card
 				.inline
-					img(src='/logo.svg', alt='OS Logo', height='64px', width='64px')
+					img(src='/status/logo.svg', alt='OS Logo', height='64px', width='64px')
 				.inline
 					.left-text
-						h2 Node.js Server
+						h2 Node Server
 						p #{ address }
 				.clearfix
 				br
@@ -63,7 +63,7 @@ html
 					.clearfix
 					.bar-wrapper
 						.bar(v-bind:style="{ width: (100 * swapUsed / swapTotal) + '%' }")
-		script(src='/library/chart.min.js')
-		script(src='/library/vue.min.js')
-		script(src='/socket.io/socket.io.js')
-		script(src='/client.js')
+		script(src='/status/socket.io/socket.io.js')
+		script(src='/status/library/chart.min.js')
+		script(src='/status/library/vue.min.js')
+		script(src='/status/client.js')
