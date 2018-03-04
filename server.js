@@ -83,7 +83,7 @@ setInterval(() => {
 	ps.stdout.on('data', value => {
 		data.node = parseFloat(value) / cpus.length;
 	});
-	// average load
+	// load average
 	const cpus = os.cpus();
 	const loadavg = os.loadavg();
 	for (const i in loadavg) {
@@ -96,15 +96,13 @@ setInterval(() => {
 	data.loadavg = loadavg;
 	// memory
 	si.mem(o => {
-		o.active = Math.round(o.active / 1000000);
-		o.total = Math.round(o.total / 1000000);
-		o.swapused = Math.round(o.swapused / 1000000);
-		o.swaptotal = Math.round(o.swaptotal / 1000000);
-		data.memUsed = o.active;
-		data.memTotal = o.total;
-		data.swapUsed = o.swapused;
-		data.swapTotal = o.swaptotal;
+		data.memUsed = Math.round(o.active / 1000000);
+		data.memTotal = Math.round(o.total / 1000000);
+		data.swapUsed = Math.round(o.swapused / 1000000);
+		data.swapTotal = Math.round(o.swaptotal / 1000000);
 	});
+	// uptime days
+	data.days = Math.floor(si.time().uptime / 86400);
 	// send data to clients
 	for (const key in clients) {
 		clients[key].emit('update', data);
