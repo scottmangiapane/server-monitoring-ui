@@ -101,8 +101,6 @@ setInterval(() => {
 		data.swapUsed = Math.round(o.swapused / 1000000);
 		data.swapTotal = Math.round(o.swaptotal / 1000000);
 	});
-	// uptime days
-	data.days = Math.floor(si.time().uptime / 86400);
 	// send data to clients
 	for (const key in clients) {
 		clients[key].emit('update', data);

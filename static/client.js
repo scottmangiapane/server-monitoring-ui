@@ -8,8 +8,7 @@ const app = new Vue({
 		memUsed: 0,
 		memTotal: 0,
 		swapUsed: 0,
-		swapTotal: 0,
-		days: 0
+		swapTotal: 0
 	}
 });
 
@@ -63,7 +62,6 @@ socket.on('update', (data) => {
 	app.memTotal = data.memTotal;
 	app.swapUsed = data.swapUsed;
 	app.swapTotal = data.swapTotal;
-	app.days = data.days;
 	if (chart.data.datasets[0].data.length < 20) {
 		chart.data.labels.push('');
 	} else {

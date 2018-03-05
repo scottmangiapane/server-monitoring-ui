@@ -66,8 +66,6 @@ html
 							.clearfix
 							.bar-wrapper
 								.bar(v-bind:style="{ width: (100 * swapUsed / swapTotal) + '%' }")
-				.card
-					p.small {{ days }} days since last reboot
 		script(src='/status/socket.io/socket.io.js')
 		script(src='/status/library/chart.min.js')
 		script(src='/status/library/vue.min.js')
