@@ -48,24 +48,24 @@ html
 						p.small   {{ i.text }}: {{ i.value }}%  
 						.bar-wrapper
 							.bar.bar-error(v-if='i.value >= 100', style='width: 100%')
-							.bar(v-else='', v-bind:style="{ width: i.value + '%' }")
-				div(v-if="memTotal > 0 || swapTotal > 0")
+							.bar(v-else='', v-bind:style='{ width: i.value + "%" }')
+				div(v-if='memTotal > 0 || swapTotal > 0')
 					.card
 						p.dark Memory Usage
-						div(v-if="memTotal > 0")
+						div(v-if='memTotal > 0')
 							br
 							p.small.left memory
 							p.small.right {{ memUsed }} / {{ memTotal }} MB
 							.clearfix
 							.bar-wrapper
-								.bar(v-bind:style="{ width: (100 * memUsed / memTotal) + '%' }")
-						div(v-if="swapTotal > 0")
+								.bar(v-bind:style='{ width: (100 * memUsed / memTotal) + "%" }')
+						div(v-if='swapTotal > 0')
 							br
 							p.small.left swap
 							p.small.right {{ swapUsed }} / {{ swapTotal }} MB
 							.clearfix
 							.bar-wrapper
-								.bar(v-bind:style="{ width: (100 * swapUsed / swapTotal) + '%' }")
+								.bar(v-bind:style='{ width: (100 * swapUsed / swapTotal) + "%" }')
 		script(src='/status/socket.io/socket.io.js')
 		script(src='/status/library/chart.min.js')
 		script(src='/status/library/vue.min.js')
