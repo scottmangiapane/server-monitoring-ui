@@ -53,7 +53,7 @@ const chart = new Chart(ctx, {
 
 // set up websockets
 
-const socket = io({ path: '/status/socket.io' });
+const socket = io({ path: '/socket.io' });
 
 socket.on('update', (data) => {
 	app.temp = data.temp;

@@ -15,16 +15,12 @@ let info = {};
 const app = express();
 const httpServer = http.createServer(app);
 
-app.use('/status', express.static(path.join(__dirname, 'static')));
+app.use('/', express.static(path.join(__dirname, 'static')));
 
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
 
 app.get('/', (req, res) => {
-	res.redirect('/status');
-});
-
-app.get('/status', (req, res) => {
 	res.render('index', {
 		address: info.ip,
 		distro: info.distro,
@@ -47,7 +43,7 @@ httpServer.listen(3000, () => {
 let clients = {};
 let data = {};
 
-const io = socket(httpServer, { path: '/status/socket.io' });
+const io = socket(httpServer, { path: '/socket.io' });
 
 io.on('connection', client => {
 	client.emit('update', data);
