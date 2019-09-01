@@ -3,6 +3,7 @@
 const app = new Vue({
 	el: '#app',
 	data: {
+		online: true,
 		temp: 0,
 		loadavg: 0,
 		memUsed: 0,
@@ -54,6 +55,14 @@ const chart = new Chart(ctx, {
 // set up websockets
 
 const socket = io({ path: '/socket.io' });
+
+socket.on('connect', () => {
+	app.online = true;
+});
+
+socket.on('disconnect', () => {
+	app.online = false;
+});
 
 socket.on('update', (data) => {
 	app.temp = data.temp;

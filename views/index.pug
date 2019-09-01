@@ -12,7 +12,8 @@ html
 				.inline
 					.left-text
 						h2 Node Server
-						p #{ address }
+						p(v-cloak v-if='online') #{ address }
+						p.red(v-else) Offline
 				.clearfix
 				br
 				hr
@@ -32,10 +33,7 @@ html
 					p.small Arch
 					p.dark.left #{ arch }
 					.clearfix
-			div(v-if='false')
-				.card
-					p Loading...
-			div(v-cloak)
+			div(v-cloak v-show='online')
 				.card
 					p.dark(v-if='temp > 0') CPU Usage ({{ temp }}°)
 					p.dark(v-else) CPU Usage
@@ -66,6 +64,9 @@ html
 							.clearfix
 							.bar-wrapper
 								.bar(v-bind:style='{ width: (100 * swapUsed / swapTotal) + "%" }')
+			div(v-show='!online')
+				.card
+					p Loading...
 		script(src='/socket.io/socket.io.js')
 		script(src='/library/chart.min.js')
 		script(src='/library/vue.min.js')

@@ -92,6 +92,10 @@ p {
 	text-align: left;
 }
 
+.red {
+	color: #f44336;
+}
+
 .right {
 	float: right;
 }
