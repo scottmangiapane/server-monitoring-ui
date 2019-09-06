@@ -35,7 +35,7 @@ html
 					.clearfix
 			div(v-cloak v-show='online')
 				.card
-					p.dark(v-if='temp > 0') CPU Usage ({{ temp }}°)
+					p.dark(v-if='temp > 0') CPU Usage ({{ temp }}°C)
 					p.dark(v-else) CPU Usage
 					br
 					canvas#chart
