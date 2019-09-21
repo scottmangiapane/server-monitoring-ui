@@ -34,8 +34,8 @@ app.get('*', (req, res) => {
 	res.status(404).render('404');
 });
 
-httpServer.listen(3000, () => {
-	console.log('Server running on 3000');
+httpServer.listen(8008, () => {
+	console.log('Server running on 8008');
 });
 
 // setup websockets
