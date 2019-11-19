@@ -1,6 +1,6 @@
 ## Server Monitoring
 
-This project is a Node.js webserver that gives system information critical to understanding the health of your server.
+This project is a Node.js webserver that displays important system information.
 
 ## Getting Started
 
@@ -9,6 +9,10 @@ This project is a Node.js webserver that gives system information critical to un
 * Launch the server with `npm run start`
 * [PM2](https://pm2.keymetrics.io/) is recommended to start the server on boot
 
+## Live demo
+
+https://status.scottmangiapane.com/
+
 ## Screenshots
 
-<img src="screenshots/server.png" width="800">
+<img src="screenshots/server.png" width="600">
