@@ -21,9 +21,9 @@
     "fs": "0.0.1-security",
     "os": "^0.1.1",
     "path": "^0.12.7",
-    "public-ip": "^3.2.0",
+    "public-ip": "^4.0.0",
     "pug": "^2.0.4",
-    "socket.io": "^2.2.0",
-    "systeminformation": "^4.14.4"
+    "socket.io": "^2.3.0",
+    "systeminformation": "^4.19.0"
   }
 }
