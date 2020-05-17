@@ -34,6 +34,12 @@ const chart = new Chart(ctx, {
 		legend: {
 			display: false
 		},
+		layout: {
+			padding: {
+				left: 24,
+				right: 32
+			}
+		},
 		responsive: true,
 		scales: {
 			xAxes: [{

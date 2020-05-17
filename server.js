@@ -15,7 +15,7 @@ let info = {};
 const app = express();
 const httpServer = http.createServer(app);
 
-app.use('/', express.static(path.join(__dirname, 'static')));
+app.use('/', express.static(path.join(__dirname, 'public')));
 
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
