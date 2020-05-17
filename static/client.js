@@ -24,18 +24,31 @@ const chart = new Chart(ctx, {
 			label: '',
 			backgroundColor: 'rgba(76, 175, 80, 0.4)',
 			borderColor: 'rgba(76, 175, 80, 1)',
-			data: []
+			data: [],
+			pointRadius: 0
 		}]
 	},
 	options: {
+		animation: false,
 		events: [],
 		legend: {
-			display: false,
+			display: false
 		},
 		responsive: true,
 		scales: {
 			xAxes: [{
-				display: false
+				ticks: {
+					fontFamily: 'Roboto',
+					maxRotation: 0
+				},
+				time: {
+					displayFormats: {
+						minute: 'h:mm:ss a'
+					},
+					unit: 'minute',
+					unitStepSize: 0.1666666667
+				},
+				type: 'time'
 			}],
 			yAxes: [{
 				ticks: {
@@ -45,7 +58,9 @@ const chart = new Chart(ctx, {
 							return value + '%';
 						}
 					},
-					suggestedMax: 5
+					fontFamily: 'Roboto',
+					maxTicksLimit: 6,
+					suggestedMax: 100
 				}
 			}]
 		}
@@ -71,11 +86,10 @@ socket.on('update', (data) => {
 	app.memTotal = data.memTotal;
 	app.swapUsed = data.swapUsed;
 	app.swapTotal = data.swapTotal;
-	if (chart.data.datasets[0].data.length < 20) {
-		chart.data.labels.push('');
-	} else {
-		chart.data.datasets[0].data.shift();
+	chart.data.datasets[0].data = data.nodes;
+	chart.data.labels = [];
+	for (let i = 0; i < chart.data.datasets[0].data.length; i++) {
+		chart.data.labels.unshift(Date.now() - i * 1000);
 	}
-	chart.data.datasets[0].data.push(data.node);
 	chart.update();
 });

@@ -68,6 +68,8 @@ si.osInfo(o => {
 
 // build dynamic data object
 
+const nodes = [];
+
 setInterval(() => {
 	// CPU temperature
 	si.cpuTemperature(o => {
@@ -75,10 +77,14 @@ setInterval(() => {
 		data.temp = o.main;
 	});
 	// CPU usage
-	const ps = spawn('sh', ['-c', 'ps -A -o pcpu | tail -n+2 | paste -sd+ | bc']);
+	const ps = spawn('sh', ['-c', 'top -bn1 | grep "Cpu(s)" | sed "s/.*, *\\([0-9.]*\\)%* id.*/\\1/" | awk "{print 100 - \\$1}"']);
 	ps.stdout.on('data', value => {
-		data.node = parseFloat(value) / cpus.length;
+		while (nodes.length >= 30) {
+			nodes.shift();
+		}
+		nodes.push(parseFloat(value));
 	});
+	data.nodes = nodes;
 	// load average
 	const cpus = os.cpus();
 	const loadavg = os.loadavg();
