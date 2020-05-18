@@ -77,7 +77,13 @@ setInterval(() => {
 		data.temp = o.main;
 	});
 	// CPU usage
-	const ps = spawn('sh', ['-c', 'top -bn1 | grep "Cpu(s)" | sed "s/.*, *\\([0-9.]*\\)%* id.*/\\1/" | awk "{print 100 - \\$1}"']);
+	const ps = spawn('sh', [
+		'-c',
+		'top -bn1 | '
+			+ 'grep "Cpu(s)" | '
+			+ 'sed "s/.*, *\\([0-9.]*\\)%* id.*/\\1/" | '
+			+ 'awk "{print 100 - \\$1}"'
+	]);
 	ps.stdout.on('data', value => {
 		while (nodes.length >= 30) {
 			nodes.shift();
