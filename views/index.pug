@@ -4,7 +4,7 @@ html
 		link(rel='stylesheet', href='/style.css')
 		link(rel='stylesheet', href='/library/bootstrap-grid.min.css')
 		meta(name='viewport', content='width=device-width, initial-scale=1')
-		title Node Server
+		title Server Status
 	body
 		#app.container
 			.row
@@ -14,7 +14,7 @@ html
 							img(src='/logo.svg', alt='OS Logo', height='64px', width='64px')
 						.inline
 							.left-text
-								h2 Node Server
+								h2 Server Status
 								p(v-cloak v-if='online') #{ address }
 								p.red(v-else) Offline
 						.clearfix

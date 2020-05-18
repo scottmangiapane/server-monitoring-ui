@@ -145,6 +145,11 @@ p {
 	.card {
 		box-shadow: none;
 		margin: 0;
-		padding: 24px 32px;
+		padding: 24px;
+	}
+
+	.card-no-padding {
+		padding-left: 0;
+		padding-right: 0;
 	}
 }

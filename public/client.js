@@ -52,7 +52,7 @@ const chart = new Chart(ctx, {
 						minute: 'h:mm:ss a'
 					},
 					unit: 'minute',
-					unitStepSize: 0.1666666667
+					unitStepSize: 0.25
 				},
 				type: 'time'
 			}],

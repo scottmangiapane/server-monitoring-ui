@@ -85,7 +85,7 @@ setInterval(() => {
 			+ 'awk "{print 100 - \\$1}"'
 	]);
 	ps.stdout.on('data', value => {
-		while (nodes.length >= 30) {
+		while (nodes.length >= 60) {
 			nodes.shift();
 		}
 		nodes.push(parseFloat(value));
