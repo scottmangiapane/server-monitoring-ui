@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const { spawn } = require('child_process');
 const express = require('express');
 const fs = require('fs');
@@ -34,8 +36,9 @@ app.get('*', (req, res) => {
 	res.status(404).render('404');
 });
 
-httpServer.listen(8008, () => {
-	console.log('Server running on 8008');
+const port = process.env.PORT || 3000;
+httpServer.listen(port, () => {
+	console.log(`Server running on ${ port }`);
 });
 
 // setup websockets
