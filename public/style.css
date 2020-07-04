@@ -10,6 +10,11 @@ h2 {
 	line-height: 36px;
 }
 
+hr {
+	border: none;
+	border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
 html {
 	background-color: #fafafa;
 	box-shadow: inset 0px 250px 0px 0px #2196f3;

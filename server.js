@@ -43,7 +43,7 @@ httpServer.listen(8008, () => {
 let clients = {};
 let data = {};
 
-const io = socket(httpServer, { path: '/socket.io' });
+const io = socket(httpServer, { cookie: false, path: '/socket.io' });
 
 io.on('connection', client => {
 	client.emit('update', data);
