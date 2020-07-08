@@ -10,6 +10,12 @@ const publicIp = require('public-ip');
 const socket = require('socket.io');
 const si = require('systeminformation');
 
+process.on('SIGINT', function() {
+	db.stop(function(err) {
+		process.exit(err ? 1 : 0);
+	});
+});
+
 let info = {};
 
 // run webserver
@@ -58,9 +64,11 @@ io.on('connection', client => {
 
 // build static info object
 
-publicIp.v4().then(ip => {
-	info.ip = ip;
-});
+if (process.env.HIDE_IP !== 'true') {
+	publicIp.v4().then(ip => {
+		info.ip = ip;
+	});
+}
 
 si.osInfo(o => {
 	info.distro = o.distro;
