@@ -31,10 +31,11 @@ app.set('views', path.join(__dirname, 'views'));
 app.get('/', (req, res) => {
 	res.render('index', {
 		address: info.ip,
+		arch: info.arch,
 		distro: info.distro,
+		hostname: info.hostname,
 		release: info.release,
-		kernel: info.kernel,
-		arch: info.arch
+		kernel: info.kernel
 	});
 });
 
@@ -64,6 +65,8 @@ io.on('connection', client => {
 
 // build static info object
 
+info.hostname = os.hostname();
+
 if (process.env.HIDE_IP !== 'true') {
 	publicIp.v4().then(ip => {
 		info.ip = ip;
@@ -71,10 +74,10 @@ if (process.env.HIDE_IP !== 'true') {
 }
 
 si.osInfo(o => {
+	info.arch = o.arch;
 	info.distro = o.distro;
 	info.release = o.release;
 	info.kernel = o.kernel;
-	info.arch = o.arch;
 });
 
 // build dynamic data object
@@ -82,11 +85,10 @@ si.osInfo(o => {
 const nodes = [];
 
 setInterval(() => {
-	// CPU temperature
-	si.cpuTemperature(o => {
-		o.main = Math.round(o.main);
-		data.temp = o.main;
-	});
+	// CPU cores
+	data.cores = os.cpus().map(c => c.speed);
+	// CPU load average
+	data.loadavg = os.loadavg();
 	// CPU usage
 	const ps = spawn('sh', [
 		'-c',
@@ -102,10 +104,11 @@ setInterval(() => {
 		nodes.push(parseFloat(value));
 	});
 	data.nodes = nodes;
-	// CPU cores
-	data.cores = os.cpus().length;
-	// load average
-	data.loadavg = os.loadavg();
+	// CPU temperature
+	si.cpuTemperature(o => {
+		o.main = Math.round(o.main);
+		data.temp = o.main;
+	});
 	// memory
 	si.mem(o => {
 		data.memUsed = Math.round(o.active / 1000000);

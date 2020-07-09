@@ -4,13 +4,13 @@ const app = new Vue({
 	el: '#app',
 	data: {
 		online: true,
-		cores: 0,
-		loadavg: 0,
+		cores: [],
+		loadavg: [],
+		temp: 0,
 		memUsed: 0,
 		memTotal: 0,
 		swapUsed: 0,
-		swapTotal: 0,
-		temp: 0
+		swapTotal: 0
 	}
 });
 
@@ -89,11 +89,11 @@ socket.on('disconnect', () => {
 socket.on('update', (data) => {
 	app.cores = data.cores;
 	app.loadavg = data.loadavg;
+	app.temp = data.temp;
 	app.memUsed = data.memUsed;
 	app.memTotal = data.memTotal;
 	app.swapUsed = data.swapUsed;
 	app.swapTotal = data.swapTotal;
-	app.temp = data.temp;
 	chart.data.datasets[0].data = data.nodes;
 	chart.data.labels = [];
 	for (let i = 0; i < chart.data.datasets[0].data.length; i++) {

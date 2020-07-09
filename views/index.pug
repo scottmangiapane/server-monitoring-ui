@@ -14,7 +14,7 @@ html
 							img(src='/logo.svg', alt='OS Logo', height='64px', width='64px')
 						.inline
 							.left-text
-								h2 Server Status
+								h2 #{ hostname }
 								p(v-cloak v-if='online') #{ address }
 								p.red(v-else) Offline
 						.clearfix
@@ -28,7 +28,6 @@ html
 							p.small Release
 							p.dark.left #{ release }
 							.clearfix
-						.inline
 						.inline
 							p.small Kernel
 							p.dark.left #{ kernel }
@@ -59,7 +58,7 @@ html
 						.spacer
 						canvas#chart
 					.card
-						p.dark Load Average ({{ cores }} Cores)
+						p.dark Load Average
 						.spacer
 						.inline
 							p {{ Math.round(loadavg[0] * 100) / 100 }}
@@ -70,6 +69,12 @@ html
 						.inline
 							p {{ Math.round(loadavg[2] * 100) / 100 }}
 							p.small 15 minutes
+					.card
+						p.dark CPU Cores
+						.spacer
+						.inline(v-for='(core, i) in cores')
+							.bordered
+								p.small {{ core }} MHz
 		script(src='/socket.io/socket.io.js')
 		script(src='/library/moment.min.js')
 		script(src='/library/chart.min.js')
