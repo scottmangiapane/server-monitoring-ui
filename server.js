@@ -102,17 +102,10 @@ setInterval(() => {
 		nodes.push(parseFloat(value));
 	});
 	data.nodes = nodes;
+	// CPU cores
+	data.cores = os.cpus().length;
 	// load average
-	const cpus = os.cpus();
-	const loadavg = os.loadavg();
-	for (const i in loadavg) {
-		const value = Math.round(100 * loadavg[i] / cpus.length);
-		loadavg[i] = { value: value };
-	}
-	loadavg[0].text = '1 minute';
-	loadavg[1].text = '5 minutes';
-	loadavg[2].text = '15 minutes';
-	data.loadavg = loadavg;
+	data.loadavg = os.loadavg();
 	// memory
 	si.mem(o => {
 		data.memUsed = Math.round(o.active / 1000000);

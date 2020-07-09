@@ -59,13 +59,17 @@ html
 						.spacer
 						canvas#chart
 					.card
-						p.dark Average Load Per CPU
+						p.dark Load Average ({{ cores }} Cores)
 						.spacer
-						.inline(v-for='i in loadavg')
-							p.small   {{ i.text }}: {{ i.value }}%  
-							.bar-wrapper
-								.bar.bar-error(v-if='i.value >= 100', style='width: 100%')
-								.bar(v-else='', v-bind:style='{ width: i.value + "%" }')
+						.inline
+							p {{ Math.round(loadavg[0] * 100) / 100 }}
+							p.small 1 minute
+						.inline
+							p {{ Math.round(loadavg[1] * 100) / 100 }}
+							p.small 5 minutes
+						.inline
+							p {{ Math.round(loadavg[2] * 100) / 100 }}
+							p.small 15 minutes
 		script(src='/socket.io/socket.io.js')
 		script(src='/library/moment.min.js')
 		script(src='/library/chart.min.js')
