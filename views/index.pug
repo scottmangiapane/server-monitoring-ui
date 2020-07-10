@@ -22,31 +22,31 @@ html
 						hr
 						.spacer
 						.inline
-							p.small Distro
+							p.small DISTRO
 							p.dark.left #{ distro }
 							.clearfix
-							p.small Release
+							p.small RELEASE
 							p.dark.left #{ release }
 							.clearfix
 						.inline
-							p.small Kernel
+							p.small KERNEL
 							p.dark.left #{ kernel }
 							.clearfix
-							p.small Arch
+							p.small ARCH
 							p.dark.left #{ arch }
 							.clearfix
 					.card(v-cloak v-show='online' v-if='memTotal > 0 || swapTotal > 0')
 						p.dark Memory Usage
 						div(v-if='memTotal > 0')
 							.spacer
-							p.small.left memory
+							p.small.left MEMORY
 							p.small.right {{ memUsed }} / {{ memTotal }} MB
 							.clearfix
 							.bar-wrapper
 								.bar(v-bind:style='{ width: (100 * memUsed / memTotal) + "%" }')
 						div(v-if='swapTotal > 0')
 							.spacer
-							p.small.left swap
+							p.small.left SWAP
 							p.small.right {{ swapUsed }} / {{ swapTotal }} MB
 							.clearfix
 							.bar-wrapper
@@ -62,19 +62,23 @@ html
 						.spacer
 						.inline
 							p {{ Math.round(loadavg[0] * 100) / 100 }}
-							p.small 1 minute
+							p.small 1 MINUTE
 						.inline
 							p {{ Math.round(loadavg[1] * 100) / 100 }}
-							p.small 5 minutes
+							p.small 5 MINUTES
 						.inline
 							p {{ Math.round(loadavg[2] * 100) / 100 }}
-							p.small 15 minutes
-					.card
-						p.dark CPU Cores
+							p.small 15 MINUTES
+						.spacer
+						hr
+						.spacer
+						p.dark Core Speeds
 						.spacer
 						.inline(v-for='(core, i) in cores')
 							.bordered
-								p.small {{ core }} MHz
+								p.small {{ (core / 1000).toFixed(2) }} GHz
+							.spacer
+						.spacer-negative
 		script(src='/socket.io/socket.io.js')
 		script(src='/library/moment.min.js')
 		script(src='/library/chart.min.js')

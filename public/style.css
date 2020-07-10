@@ -123,11 +123,14 @@ p {
 	font-size: 10px;
 	line-height: 15px;
 	text-align: left;
-	text-transform: uppercase;
 }
 
 .spacer {
 	margin-top: 16px;
+}
+
+.spacer-negative {
+	margin-top: -16px;
 }
 
 [v-cloak] {

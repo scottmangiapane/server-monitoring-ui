@@ -10,12 +10,6 @@ const publicIp = require('public-ip');
 const socket = require('socket.io');
 const si = require('systeminformation');
 
-process.on('SIGINT', function() {
-	db.stop(function(err) {
-		process.exit(err ? 1 : 0);
-	});
-});
-
 let info = {};
 
 // run webserver

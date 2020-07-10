@@ -22,6 +22,7 @@ const chart = new Chart(ctx, {
 	data: {
 		labels: [],
 		datasets: [{
+			borderWidth: 2,
 			label: '',
 			backgroundColor: 'rgba(76, 175, 80, 0.4)',
 			borderColor: 'rgba(76, 175, 80, 1)',
