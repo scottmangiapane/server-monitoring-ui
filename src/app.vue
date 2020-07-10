@@ -1,3 +1,10 @@
+<template>
+    <div id="app">
+		<router-view />
+    </div>
+</template>
+
+<style>
 * {
 	margin: 0;
 	padding: 0;
@@ -5,6 +12,7 @@
 
 body {
 	background-color: #fafafa;
+	box-shadow: inset 0px 250px 0px 0px #2196f3;
 	padding: 64px 0;
 	text-align: center;
 }
@@ -29,8 +37,8 @@ p {
 	line-height: 24px;
 }
 
-.accented {
-	box-shadow: inset 0px 250px 0px 0px #2196f3;
+[v-cloak] {
+	display: none;
 }
 
 .bar {
@@ -111,10 +119,6 @@ p {
 	text-align: left;
 }
 
-.red {
-	color: #f44336;
-}
-
 .right {
 	float: right;
 }
@@ -131,10 +135,6 @@ p {
 
 .spacer-negative {
 	margin-top: -16px;
-}
-
-[v-cloak] {
-	display: none;
 }
 
 @keyframes bar {
@@ -154,7 +154,7 @@ p {
 }
 
 @media all and (max-width: 575px) {
-	.accented {
+	body {
 		background-color: white;
 		box-shadow: none;
 		padding: 32px 0;
@@ -171,3 +171,4 @@ p {
 		padding-right: 0;
 	}
 }
+</style>
