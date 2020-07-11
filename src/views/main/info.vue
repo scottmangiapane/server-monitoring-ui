@@ -29,3 +29,16 @@
         </div>
     </div>
 </template>
+
+<script>
+export default {
+    data() {
+        return {
+            arch: null,
+            distro: null,
+            kernel: null,
+            release: null
+        };
+    }
+};
+</script>

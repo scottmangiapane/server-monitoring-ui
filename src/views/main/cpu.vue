@@ -28,3 +28,14 @@
         <div class="spacer-negative"></div>
     </div>
 </template>
+
+<script>
+import { mapState } from 'vuex';
+
+export default {
+    computed: mapState({
+        cores: state => state.cpu.cores,
+        loadavg: state => state.cpu.loadavg
+    })
+};
+</script>

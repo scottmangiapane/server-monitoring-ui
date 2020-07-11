@@ -1,174 +1,177 @@
 <template>
     <div id="app">
-		<router-view />
+        <router-view />
     </div>
 </template>
 
 <style>
+@import url('https://fonts.googleapis.com/icon?family=Roboto');
+@import url(./assets/bootstrap-grid.min.css);
+
 * {
-	margin: 0;
-	padding: 0;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-	background-color: #fafafa;
-	box-shadow: inset 0px 250px 0px 0px #2196f3;
-	padding: 64px 0;
-	text-align: center;
+    background-color: #fafafa;
+    box-shadow: inset 0px 250px 0px 0px #2196f3;
+    padding: 64px 0;
+    text-align: center;
 }
 
 h2 {
-	color: #202020;
-	font-family: 'Roboto', sans-serif;
-	font-size: 24px;
-	line-height: 36px;
-	text-transform: capitalize;
+    color: #202020;
+    font-family: 'Roboto', sans-serif;
+    font-size: 24px;
+    line-height: 36px;
+    text-transform: capitalize;
 }
 
 hr {
-	border: none;
-	border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border: none;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 p {
-	color: #727272;
-	font-family: 'Roboto', sans-serif;
-	font-size: 16px;
-	line-height: 24px;
+    color: #727272;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    line-height: 24px;
 }
 
 [v-cloak] {
-	display: none;
+    display: none;
 }
 
 .bar {
-	animation: bar 1s linear infinite;
-	background-image: linear-gradient(
-		-45deg,
-		#2196f3 25%,
-		#42a5f5 25%,
-		#42a5f5 50%,
-		#2196f3 50%,
-		#2196f3 75%,
-		#42a5f5 75%,
-		#42a5f5
-	);
-	background-size: 2rem 2rem;
-	border-radius: 0.25rem 0 0 0.25rem;
-	height: 1rem;
+    animation: bar 1s linear infinite;
+    background-image: linear-gradient(
+        -45deg,
+        #2196f3 25%,
+        #42a5f5 25%,
+        #42a5f5 50%,
+        #2196f3 50%,
+        #2196f3 75%,
+        #42a5f5 75%,
+        #42a5f5
+    );
+    background-size: 2rem 2rem;
+    border-radius: 0.25rem 0 0 0.25rem;
+    height: 1rem;
 }
 
 .bar-error {
-	background-image: linear-gradient(
-		-45deg,
-		#f44336 25%,
-		#ef5350 25%,
-		#ef5350 50%,
-		#f44336 50%,
-		#f44336 75%,
-		#ef5350 75%,
-		#ef5350
-	);
-	border-radius: 0.25rem;
+    background-image: linear-gradient(
+        -45deg,
+        #f44336 25%,
+        #ef5350 25%,
+        #ef5350 50%,
+        #f44336 50%,
+        #f44336 75%,
+        #ef5350 75%,
+        #ef5350
+    );
+    border-radius: 0.25rem;
 }
 
 .bar-wrapper {
-	background-color: #f1f1f1;
-	border-radius: 0.25rem;
-	width: 100%;
+    background-color: #f1f1f1;
+    border-radius: 0.25rem;
+    width: 100%;
 }
 
 .bordered {
-	border: 1px solid #ccc;
-	border-radius: 8px;
-	padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 8px;
 }
 
 .card {
-	background-color: white;
-	border-radius: 2px;
-	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-	margin-bottom: 30px;
-	padding: 32px;
+    background-color: white;
+    border-radius: 2px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    margin-bottom: 30px;
+    padding: 32px;
 }
 
 .card-no-padding {
-	padding-left: 0;
-	padding-right: 0;
+    padding-left: 0;
+    padding-right: 0;
 }
 
 .clearfix {
-	clear: both;
+    clear: both;
 }
 
 .dark {
-	color: #202020;
+    color: #202020;
 }
 
 .inline {
-	display: inline-block;
-	margin: 0 6px;
-	vertical-align: middle;
+    display: inline-block;
+    margin: 0 6px;
+    vertical-align: middle;
 }
 
 .left {
-	float: left;
+    float: left;
 }
 
 .left-text {
-	text-align: left;
+    text-align: left;
 }
 
 .right {
-	float: right;
+    float: right;
 }
 
 .small {
-	font-size: 10px;
-	line-height: 15px;
-	text-align: left;
+    font-size: 10px;
+    line-height: 15px;
+    text-align: left;
 }
 
 .spacer {
-	margin-top: 16px;
+    margin-top: 16px;
 }
 
 .spacer-negative {
-	margin-top: -16px;
+    margin-top: -16px;
 }
 
 @keyframes bar {
-	0% {
-		background-position: 0;
-	}
+    0% {
+        background-position: 0;
+    }
 
-	100% {
-		background-position: 2rem;
-	}
+    100% {
+        background-position: 2rem;
+    }
 }
 
 @media all and (max-width: 991px) {
-	.card {
-		margin-bottom: 15px;
-	}
+    .card {
+        margin-bottom: 15px;
+    }
 }
 
 @media all and (max-width: 575px) {
-	body {
-		background-color: white;
-		box-shadow: none;
-		padding: 32px 0;
-	}
+    body {
+        background-color: white;
+        box-shadow: none;
+        padding: 32px 0;
+    }
 
-	.card {
-		box-shadow: none;
-		margin: 0;
-		padding: 24px;
-	}
+    .card {
+        box-shadow: none;
+        margin: 0;
+        padding: 24px;
+    }
 
-	.card-no-padding {
-		padding-left: 0;
-		padding-right: 0;
-	}
+    .card-no-padding {
+        padding-left: 0;
+        padding-right: 0;
+    }
 }
 </style>

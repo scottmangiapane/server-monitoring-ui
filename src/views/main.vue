@@ -6,8 +6,8 @@
                 <Memory />
             </div>
             <div class="col-lg-5 offset-lg-0 col-md-8 offset-md-2">
-                <CpuUsage />
-                <Cores />
+                <CpuGraph />
+                <Cpu />
             </div>
         </div>
     </div>
@@ -17,25 +17,46 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
 import LoadingGraphic from '@/components/loading-graphic.vue';
-import Cores from '@/views/main/cores.vue';
-import CpuUsage from '@/views/main/cpu-usage.vue';
+import Cpu from '@/views/main/cpu.vue';
+import CpuGraph from '@/views/main/cpu-graph.vue';
 import Info from '@/views/main/info.vue';
 import Memory from '@/views/main/memory.vue';
 
 export default {
+    created() {
+        console.log('Connecting to WS server');
+        this.connection = new WebSocket("wss://status.scottmangiapane.com");
+        this.connection.onopen = (event) => {
+            console.log('WS connection opened');
+        };
+        this.connection.onclose = (event) => {
+            console.log('WS connection closed');
+            this.online = false;
+        };
+        this.connection.onmessage = (event) => {
+            const { info, cpu, memory } = JSON.parse(event.data);
+            this.$store.dispatch('setInfo', info);
+            this.$store.dispatch('setCpu', cpu);
+            this.$store.dispatch('setMemory', memory);
+            this.online = true;
+        };
+        this.connection.onerror = (event) => {
+            console.log('WS error');
+        };
+    },
     components: {
-        Cores,
-        CpuUsage,
+        Cpu,
+        CpuGraph,
         Info,
         LoadingGraphic,
         Memory
     },
-    computed: {
-        online() {
-            return true;
-        }
+    data() {
+        return {
+            connection: null,
+            online: false
+        };
     }
-}
+};
 </script>
