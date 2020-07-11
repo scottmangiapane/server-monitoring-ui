@@ -6,7 +6,7 @@
                 <Memory />
             </div>
             <div class="col-lg-5 offset-lg-0 col-md-8 offset-md-2">
-                <CpuGraph />
+                <CpuUsage />
                 <Cpu />
             </div>
         </div>
@@ -19,14 +19,14 @@
 <script>
 import LoadingGraphic from '@/components/loading-graphic.vue';
 import Cpu from '@/views/main/cpu.vue';
-import CpuGraph from '@/views/main/cpu-graph.vue';
+import CpuUsage from '@/views/main/cpu-usage.vue';
 import Info from '@/views/main/info.vue';
 import Memory from '@/views/main/memory.vue';
 
 export default {
     created() {
-        console.log('Connecting to WS server');
-        this.connection = new WebSocket("wss://status.scottmangiapane.com");
+        console.log(`Connecting to WS server ${ process.env.VUE_APP_WSS_API }`);
+        this.connection = new WebSocket(process.env.VUE_APP_WSS_API);
         this.connection.onopen = (event) => {
             console.log('WS connection opened');
         };
@@ -47,7 +47,7 @@ export default {
     },
     components: {
         Cpu,
-        CpuGraph,
+        CpuUsage,
         Info,
         LoadingGraphic,
         Memory
