@@ -13,13 +13,6 @@
     padding: 0;
 }
 
-body {
-    background-color: #fafafa;
-    box-shadow: inset 0px 250px 0px 0px #2196f3;
-    padding: 64px 0;
-    text-align: center;
-}
-
 h2 {
     color: #202020;
     font-family: 'Roboto', sans-serif;
@@ -100,12 +93,23 @@ p {
     padding-right: 0;
 }
 
+.center {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
 .clearfix {
     clear: both;
 }
 
 .dark {
     color: #202020;
+}
+
+.fill-screen {
+    height: 100vh;
+    width: 100vw;
 }
 
 .inline {
@@ -140,6 +144,13 @@ p {
     margin-top: -16px;
 }
 
+.wrapper {
+    background-color: #fafafa;
+    box-shadow: inset 0px 250px 0px 0px #2196f3;
+    padding: 64px 0;
+    text-align: center;
+}
+
 @keyframes bar {
     0% {
         background-position: 0;
@@ -157,12 +168,6 @@ p {
 }
 
 @media all and (max-width: 575px) {
-    body {
-        background-color: white;
-        box-shadow: none;
-        padding: 32px 0;
-    }
-
     .card {
         box-shadow: none;
         margin: 0;
@@ -172,6 +177,12 @@ p {
     .card-no-padding {
         padding-left: 0;
         padding-right: 0;
+    }
+
+    .wrapper {
+        background-color: white;
+        box-shadow: none;
+        padding: 32px 0;
     }
 }
 </style>
