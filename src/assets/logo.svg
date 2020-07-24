@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 22.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+     viewBox="0 0 500 453.1" style="enable-background:new 0 0 500 453.1;" xml:space="preserve">
+<style type="text/css">
+    .st0{fill:#35605A;}
+    .st1{fill:#0CF574;}
+    .st2{fill:#2AB7CA;}
+</style>
+<g>
+    <path class="st0" d="M15.6,315.3h468.7c8.7,0,15.6,7,15.6,15.6v106.5c0,8.7-7,15.6-15.6,15.6H15.6c-8.7,0-15.6-7-15.6-15.6V330.9
+        C0,322.4,7,315.3,15.6,315.3z"/>
+    <path class="st0" d="M15.6,157.7h468.7c8.7,0,15.6,7,15.6,15.6v106.5c0,8.7-7,15.6-15.6,15.6H15.6c-8.7,0-15.6-7-15.6-15.6V173.3
+        C0,164.7,7,157.7,15.6,157.7z"/>
+    <path class="st0" d="M15.6,0h468.7C493,0,500,7,500,15.6v106.5c0,8.7-7,15.6-15.6,15.6H15.6c-8.7,0-15.6-7-15.6-15.6V15.6
+        C0,7,7,0,15.6,0z"/>
+</g>
+<title>server</title>
+<g>
+    <circle class="st1" cx="433.2" cy="381.2" r="27.3"/>
+    <circle class="st1" cx="433.2" cy="223.6" r="27.3"/>
+    <circle class="st1" cx="433.2" cy="65.9" r="27.3"/>
+</g>
+<g>
+    <rect x="39.5" y="68.9" class="st2" width="251.3" height="24.4"/>
+    <rect x="39.5" y="223.6" class="st2" width="251.3" height="24.4"/>
+    <rect x="39.5" y="384.2" class="st2" width="251.3" height="24.4"/>
+</g>
+</svg>

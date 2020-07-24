@@ -1,18 +1,19 @@
-## Server Monitoring
+# server-monitoring
 
-This project is a Node.js webserver that displays important system information.
+## Project setup
+```
+npm install
+```
 
-## Getting Started
+### Compiles and hot-reloads for development
+```
+npm run serve
+```
 
-* Clone this repo
-* Install dependencies with `npm install`
-* Launch the server with `npm run start`
-* [PM2](https://pm2.keymetrics.io/) is recommended to start the server on boot
+### Compiles and minifies for production
+```
+npm run build
+```
 
-## Live demo
-
-https://status.scottmangiapane.com/
-
-## Screenshots
-
-<img src="screenshots/server.png" width="600">
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
