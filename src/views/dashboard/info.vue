@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import APIService from '@/api-service';
+import ApiService from '@/api-service';
 import LoadingGraphic from '@/components/loading-graphic.vue';
 
 export default {
@@ -44,7 +44,7 @@ export default {
         LoadingGraphic
     },
     async created() {
-        this.info = await APIService.getInfo();
+        this.info = await ApiService.getStatic();
     },
     data() {
         return {
