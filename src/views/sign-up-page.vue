@@ -100,6 +100,5 @@ input { margin-bottom: 16px; }
 .card {
     margin-bottom: 32px;
     max-width: 480px;
-    width: 100%;
 }
 </style>

@@ -5,17 +5,15 @@
     <div v-else-if="connectionState === states.ERROR" class="center">
         <p>Could not connect to API server.</p>
     </div>
-    <div v-else-if="connectionState === states.OPEN" class="wrapper">
-        <div class="row">
-            <div class="col-lg-5 offset-lg-1 col-md-8 offset-md-2">
-                <Info />
-                <Memory />
-                <Time />
-            </div>
-            <div class="col-lg-5 offset-lg-0 col-md-8 offset-md-2">
-                <CpuUsage />
-                <Cpu />
-            </div>
+    <div v-else-if="connectionState === states.OPEN" class="row">
+        <div class="col-lg-5 offset-lg-1 col-md-8 offset-md-2">
+            <Info />
+            <Memory />
+            <Time />
+        </div>
+        <div class="col-lg-5 offset-lg-0 col-md-8 offset-md-2">
+            <CpuUsage />
+            <Cpu />
         </div>
     </div>
 </template>
@@ -81,3 +79,9 @@ export default {
     }
 };
 </script>
+
+<style scoped>
+::v-deep .card { text-align: center; }
+
+::v-deep .card:not(:last-of-type) { margin-bottom: 32px; }
+</style>

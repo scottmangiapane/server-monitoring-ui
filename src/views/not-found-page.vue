@@ -1,3 +1,6 @@
 <template>
-    <h1 class="text-center">404 Not Found</h1>
+    <div class="text-center">
+        <h1 class="text-title">404</h1>
+        <h2>Not Found</h2>
+    </div>
 </template>

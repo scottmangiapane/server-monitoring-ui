@@ -35,13 +35,13 @@ export default {
 </script>
 
 <style scoped>
-* >>> input { width: 100%; }
+::v-deep input { width: 100%; }
 
-* >>> hr { margin: 32px 0; }
+::v-deep hr { margin: 32px 0; }
 
-* >>> :not(.card-title) > h4, * >>> input, * >>> p { margin-bottom: 16px; }
+::v-deep :not(.card-title) > h4, ::v-deep input, ::v-deep p { margin-bottom: 16px; }
 
-* >>> .text-success {
+::v-deep .text-success {
     display: inline-block;
     margin-bottom: 0;
     margin-left: 8px;
@@ -63,6 +63,4 @@ ul {
     margin: 0 0 32px 0;
     padding: 0;
 }
-
-.card { width: 100%; }
 </style>

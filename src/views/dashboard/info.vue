@@ -5,7 +5,7 @@
                 <img src="@/assets/logo.svg" alt="Server" height="64px" width="64px" />
             </div>
             <div class="inline">
-                <div class="left-text">
+                <div class="text-left">
                     <h2>{{ info.hostname }}</h2>
                     <p>{{ info.ip }}</p>
                 </div>
@@ -15,19 +15,19 @@
             <hr/>
             <div class="spacer"></div>
             <div class="inline">
-                <p class="small">DISTRO</p>
-                <p class="dark left">{{ info.distro }}</p>
+                <p class="text-small">DISTRO</p>
+                <p class="float-left text-dark">{{ info.distro }}</p>
                 <div class="clearfix"></div>
-                <p class="small">RELEASE</p>
-                <p class="dark left">{{ info.release }}</p>
+                <p class="text-small">RELEASE</p>
+                <p class="float-left text-dark">{{ info.release }}</p>
                 <div class="clearfix"></div>
             </div>
             <div class="inline">
-                <p class="small">KERNEL</p>
-                <p class="dark left">{{ info.kernel }}</p>
+                <p class="text-small">KERNEL</p>
+                <p class="float-left text-dark">{{ info.kernel }}</p>
                 <div class="clearfix"></div>
-                <p class="small">ARCH</p>
-                <p class="dark left">{{ info.arch }}</p>
+                <p class="text-small">ARCH</p>
+                <p class="float-left text-dark">{{ info.arch }}</p>
                 <div class="clearfix"></div>
             </div>
         </div>

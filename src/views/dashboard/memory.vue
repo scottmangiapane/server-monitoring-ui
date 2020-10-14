@@ -1,10 +1,10 @@
 <template>
     <div class="card">
-        <p class="dark">Memory Usage</p>
+        <p class="text-dark">Memory Usage</p>
         <div>
             <div class="spacer"></div>
-            <p class="small left">MEMORY</p>
-            <p class="small right">{{ memUsed }} / {{ memTotal }} MB</p>
+            <p class="float-left text-small">MEMORY</p>
+            <p class="float-right text-small">{{ memUsed }} / {{ memTotal }} MB</p>
             <div class="clearfix"></div>
             <div class="bar-wrapper">
                 <div class="bar" v-bind:style="{ width: this.memPercent + '%' }"></div>
@@ -12,8 +12,8 @@
         </div>
         <div v-if="swapTotal > 0">
             <div class="spacer"></div>
-            <p class="small left">SWAP</p>
-            <p class="small right">{{ swapUsed }} / {{ swapTotal }} MB</p>
+            <p class="float-left text-small">SWAP</p>
+            <p class="float-right text-small">{{ swapUsed }} / {{ swapTotal }} MB</p>
             <div class="clearfix"></div>
             <div class="bar-wrapper">
                 <div class="bar" v-bind:style="{ width: this.swapPercent + '%' }"></div>

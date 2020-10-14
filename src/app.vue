@@ -45,20 +45,77 @@ export default {
 </script>
 
 <style>
-/* @import url('https://fonts.googleapis.com/icon?family=Roboto');
+/*
+@media all and (max-width: 991px) {
+    .card {
+        margin-bottom: 15px;
+    }
+}
+
+@media all and (max-width: 575px) {
+    .card {
+        box-shadow: none;
+        margin: 0;
+        padding: 24px;
+    }
+
+    .card-no-padding {
+        padding-left: 0;
+        padding-right: 0;
+    }
+} */
+</style>
+
+<style>
+@import url('https://fonts.googleapis.com/icon?family=Roboto');
 @import url(./assets/bootstrap-grid.min.css);
 
-* {
+/* Resets */
+
+a, a:active, a:focus, a:hover, a:visited { text-decoration:none; }
+
+html, body, div, h1, h2, h3, h4, h5, h6, a, p, li, button {
     margin: 0;
     padding: 0;
 }
 
-h2 {
-    color: #202020;
+/* Font selectors */
+
+a, button, li, h1, h2, h3, h4, h5, h6, input, label, p {
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    color: inherit;
     font-family: 'Roboto', sans-serif;
-    font-size: 24px;
-    line-height: 36px;
+    line-height: 1.5em;
+    font-weight: 400;
+}
+
+a, button, li, input, label, p { font-size: 1em; }
+
+h1, h2 {
+    font-weight: 700;
     text-transform: capitalize;
+}
+
+h3, h4, h5, h6 { font-weight: 500; }
+
+p { color: #727272; }
+
+/* Element selectors */
+
+body { background-color: white; }
+
+button {
+    background-color: transparent;
+    border: none;
+    outline: none;
+}
+
+footer { margin-top: 32px; }
+
+header {
+    box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.2);
+    margin-bottom: 48px;
 }
 
 hr {
@@ -66,16 +123,30 @@ hr {
     border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-p {
-    color: #727272;
-    font-family: 'Roboto', sans-serif;
-    font-size: 16px;
-    line-height: 24px;
+img {
+    user-select: none;
+    max-height: 100%;
+    max-width: 100%;
 }
 
-[v-cloak] {
-    display: none;
+input[type='email'], input[type='password'], input[type='text'] {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    background-color: white;
+    border: none;
+    box-shadow: inset 0px 0px 0px 2px #e0e0e0;
+    border-radius: 5px;
+    outline: none;
+    padding: 8px;
 }
+
+input[type='email']:focus,
+input[type='password']:focus,
+input[type='text']:focus { box-shadow: inset 0px 0px 0px 2px #2196f3; }
+
+input[type='submit'] { border: none; }
+
+/* Class selectors */
 
 .bar {
     animation: bar 1s linear infinite;
@@ -120,226 +191,12 @@ p {
     padding: 8px;
 }
 
-.card {
-    background-color: white;
-    border-radius: 2px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-    margin-bottom: 30px;
-    padding: 32px;
-}
-
-.card-no-padding {
-    padding-left: 0;
-    padding-right: 0;
-}
-
-.center {
-    align-items: center;
-    display: flex;
-    justify-content: center;
-}
-
-.clearfix {
-    clear: both;
-}
-
-.dark {
-    color: #202020;
-}
-
-.fill-screen {
-    height: 100vh;
-    width: 100vw;
-}
-
-.inline {
-    display: inline-block;
-    margin: 0 6px;
-    vertical-align: middle;
-}
-
-.left {
-    float: left;
-}
-
-.left-text {
-    text-align: left;
-}
-
-.right {
-    float: right;
-}
-
-.small {
-    font-size: 10px;
-    line-height: 15px;
-    text-align: left;
-}
-
-.spacer {
-    margin-top: 16px;
-}
-
-.spacer-negative {
-    margin-top: -16px;
-}
-
-.wrapper {
-    background-color: #fafafa;
-    box-shadow: inset 0px 250px 0px 0px #2196f3;
-    padding: 64px 0;
-    text-align: center;
-}
-
-@keyframes bar {
-    0% {
-        background-position: 0;
-    }
-
-    100% {
-        background-position: 2rem;
-    }
-}
-
-@media all and (max-width: 991px) {
-    .card {
-        margin-bottom: 15px;
-    }
-}
-
-@media all and (max-width: 575px) {
-    .card {
-        box-shadow: none;
-        margin: 0;
-        padding: 24px;
-    }
-
-    .card-no-padding {
-        padding-left: 0;
-        padding-right: 0;
-    }
-
-    .wrapper {
-        background-color: white;
-        box-shadow: none;
-        padding: 32px 0;
-    }
-} */
-</style>
-
-<style>
-@import url('https://fonts.googleapis.com/icon?family=Roboto');
-@import url(./assets/bootstrap-grid.min.css);
-
-/* Resets */
-
-a, a:active, a:focus, a:hover, a:visited { text-decoration:none; }
-
-html, body, div, h1, h2, h3, h4, h5, h6, a, p, li, button {
-    margin: 0;
-    padding: 0;
-}
-
-/* Font selectors */
-
-a, button, li, h1, h2, h3, h4, h5, h6, input, label, p {
-    -moz-osx-font-smoothing: grayscale;
-    -webkit-font-smoothing: antialiased;
-    color: inherit;
-    font-family: 'Roboto', sans-serif;
-    line-height: 1.5em;
-    font-weight: 400;
-}
-
-a, button, li, input, label, p { font-size: 1em; }
-
-h1, h2, h3, h4, h5, h6 { font-weight: 500; }
-
-h1 {
-    font-family: 'Roboto Condensed', sans-serif;
-    font-weight: 700;
-}
-
-p { color: #727272; }
-
-/* Element selectors */
-
-body { background-color: white; }
-
-button {
-    background-color: transparent;
-    border: none;
-    outline: none;
-}
-
-footer { margin-top: 32px; }
-
-header {
-    box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.2);
-    margin-bottom: 48px;
-}
-
-hr { border: 1px solid #e0e0e0; }
-
-img {
-    user-select: none;
-    max-height: 100%;
-    max-width: 100%;
-}
-
-input[type='email'], input[type='password'], input[type='text'] {
-    -moz-appearance: none;
-    -webkit-appearance: none;
-    background-color: white;
-    border: none;
-    box-shadow: inset 0px 0px 0px 2px #e0e0e0;
-    border-radius: 5px;
-    outline: none;
-    padding: 8px;
-}
-
-input[type='email']:focus,
-input[type='password']:focus,
-input[type='text']:focus { box-shadow: inset 0px 0px 0px 2px #2196f3; }
-
-input[type='submit'] { border: none; }
-
-/* Class selectors */
-
-.bar {
-    animation: bar 1s linear infinite;
-    background-image: linear-gradient(
-        -45deg,
-        #2196f3 25%,
-        #42a5f5 25%,
-        #42a5f5 50%,
-        #2196f3 50%,
-        #2196f3 75%,
-        #42a5f5 75%,
-        #42a5f5
-    );
-    background-size: 40px 40px;
-    border-radius: 5px 0 0 5px;
-    box-shadow: 0 5px #1976d2;
-    height: 20px;
-}
-
-.bar-wrapper {
-    background-color: #f1f1f1;
-    border-radius: 5px;
-    box-shadow: 0 5px #e0e0e0;
-    font-size: 0.6em;
-    text-align: left;
-    width: 100%;
-}
-
 .btn {
     background-color: #2196f3;
     border-radius: 5px;
     color: white;
     cursor: pointer;
     display: inline-block;
-    font-weight: 500;
     padding: 8px;
 }
 
@@ -357,16 +214,22 @@ input[type='submit'] { border: none; }
 
 .card {
     background-color: white;
-    border-radius: 16px;
-    box-shadow: 0 8px 24px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.24), 0 0px 1px rgba(0, 0, 0, 0.24);
     display: inline-block;
     padding: 32px;
     text-align: left;
+    width: 100%;
+}
+
+.card-no-padding {
+    padding-left: 0;
+    padding-right: 0;
 }
 
 .card-title {
     background-color: #263238;
-    border-radius: 16px 16px 0 0;
+    border-radius: 8px 8px 0 0;
     color: white;
     margin: -32px -32px 32px -32px;
     padding: 32px;
@@ -416,6 +279,12 @@ input[type='submit'] { border: none; }
 
 .float-right { float: right; }
 
+.inline {
+    display: inline-block;
+    margin: 0 6px;
+    vertical-align: middle;
+}
+
 .link { color: #1976d2; }
 
 .link:active { color: #d32f2f; }
@@ -424,17 +293,44 @@ input[type='submit'] { border: none; }
 
 .margin-auto { margin: auto; }
 
+.spacer {
+    margin-top: 16px;
+}
+
+.spacer-negative {
+    margin-top: -16px;
+}
+
 .text-break { overflow-wrap: break-word; }
 
 .text-center { text-align: center; }
 
+.text-dark { color: black; }
+
 .text-error { color: #d32f2f; }
 
-.text-small { font-size: 0.8em; }
+.text-left { text-align: left; }
+
+.text-small { font-size: 0.75em; }
 
 .text-success { color: #388e3c; }
 
-/* Media queries */
+.text-title {
+    color: #c2c2c2;
+    font-size: 6em;
+}
+
+/* At-rules */
+
+@keyframes bar {
+    0% {
+        background-position: 0;
+    }
+
+    100% {
+        background-position: 2rem;
+    }
+}
 
 @media only screen and (max-width: 512px) {
     .card { box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.2); }
