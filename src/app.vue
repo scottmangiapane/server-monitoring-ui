@@ -1,10 +1,10 @@
 <template>
-    <div id="app">
+    <div :class='appColor()' id="app">
         <div v-if="!account && accountIsLoading" class="center fill-screen">
             <LoadingGraphic size="lg" />
         </div>
         <div v-else>
-            <header>
+            <header :class='navColor()'>
                 <nav class="container">
                     <NavBar />
                 </nav>
@@ -29,6 +29,14 @@ export default {
     },
     computed: {
         ...mapState([ 'account', 'accountIsLoading' ])
+    },
+    methods: {
+        appColor() {
+            return (this.$route.path === '/') ? 'app-colored' : '';
+        },
+        navColor() {
+            return (this.$route.path === '/') ? 'nav-colored' : '';
+        }
     }
 }
 </script>
@@ -78,10 +86,7 @@ button {
 
 footer { margin-top: 32px; }
 
-header {
-    box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.2);
-    margin-bottom: 48px;
-}
+header { box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.2); }
 
 hr {
     border: none;
@@ -113,7 +118,11 @@ input[type='text']:focus { box-shadow: inset 0px 0px 0px 2px #2196f3; }
 
 input[type='submit'] { border: none; }
 
+main { margin-top: 48px; }
+
 /* Class selectors */
+
+.app-colored { box-shadow: inset 0 300px #2196f3; }
 
 .bar {
     animation: bar 1s linear infinite;
@@ -226,6 +235,7 @@ input[type='submit'] { border: none; }
     background-color: white;
     border-radius: 5px;
     box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.2);
+    color: initial;
     display: block;
     padding: 8px 0;
     position: absolute;
@@ -259,6 +269,11 @@ input[type='submit'] { border: none; }
 .link:hover { text-decoration: underline; }
 
 .margin-auto { margin: auto; }
+
+.nav-colored {
+    background-color: #1976d2;
+    color: white;
+}
 
 .spacer {
     margin-top: 16px;
