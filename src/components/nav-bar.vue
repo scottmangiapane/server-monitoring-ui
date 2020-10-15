@@ -24,7 +24,7 @@
         </div>
         <div class='float-right'>
             <li><router-link to='/sign-in'>Sign in</router-link></li>
-            <li><router-link class='btn' to='/sign-up' tag='button'>Sign up</router-link></li>
+            <li v-if="isSignUpEnabled"><router-link class='btn' to='/sign-up' tag='button'>Sign up</router-link></li>
         </div>
         <div class='clearfix'></div>
     </ul>
@@ -39,6 +39,7 @@ export default {
     },
     data() {
         return {
+            isSignUpEnabled: process.env.VUE_APP_ALLOW_SIGN_UP !== 'false',
             isDropdownOpen: false
         };
     },

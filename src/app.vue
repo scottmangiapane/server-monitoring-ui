@@ -29,42 +29,9 @@ export default {
     },
     computed: {
         ...mapState([ 'account', 'accountIsLoading' ])
-    },
-    created() {
-        if (process.env.NODE_ENV === 'production') {
-            console.log('%cStop!', 'color: red; font-size: 48px; font-weight: bold;');
-            console.log(
-                '%cThis area is for developers and researchers. '
-                + 'If someone told you to copy-paste something in here, '
-                + 'it is likely a scam and could compromise your account.',
-                'color: black; font-size: 22px; font-weight: bold;'
-            );
-        }
     }
 }
 </script>
-
-<style>
-/*
-@media all and (max-width: 991px) {
-    .card {
-        margin-bottom: 15px;
-    }
-}
-
-@media all and (max-width: 575px) {
-    .card {
-        box-shadow: none;
-        margin: 0;
-        padding: 24px;
-    }
-
-    .card-no-padding {
-        padding-left: 0;
-        padding-right: 0;
-    }
-} */
-</style>
 
 <style>
 @import url('https://fonts.googleapis.com/icon?family=Roboto');
@@ -103,8 +70,6 @@ p { color: #727272; }
 
 /* Element selectors */
 
-body { background-color: white; }
-
 button {
     background-color: transparent;
     border: none;
@@ -122,6 +87,8 @@ hr {
     border: none;
     border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
+
+html { background-color: white; }
 
 img {
     user-select: none;
@@ -332,7 +299,15 @@ input[type='submit'] { border: none; }
     }
 }
 
-@media only screen and (max-width: 512px) {
-    .card { box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.2); }
+@media only screen and (max-width: 575px) {
+    .card {
+        box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.2);
+        padding: 16px;
+    }
+
+    .card-title {
+        margin: -32px -16px 32px -16px;
+        padding: 32px 16px;
+    }
 }
 </style>

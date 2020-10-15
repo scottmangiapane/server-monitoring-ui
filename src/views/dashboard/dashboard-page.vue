@@ -81,7 +81,21 @@ export default {
 </script>
 
 <style scoped>
-::v-deep .card { text-align: center; }
+::v-deep .card {
+    margin-bottom: 32px;
+    text-align: center;
+}
 
-::v-deep .card:not(:last-of-type) { margin-bottom: 32px; }
+@media only screen and (max-width: 575px) {
+    ::v-deep .card {
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        border-radius: 0;
+        box-shadow: none;
+        padding: 32px 0;
+    }
+
+    ::v-deep { margin-bottom: 0; }
+
+    ::v-deep hr { display: none; }
+}
 </style>

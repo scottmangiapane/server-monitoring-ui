@@ -42,7 +42,7 @@
                 <button v-else class="btn" type="submit">Continue</button>
             </form>
         </div>
-        <p class="text-small">
+        <p v-if="isSignUpEnabled" class="text-small">
             Don't have an account?
             <router-link to="/sign-up" class="link">Create one here.</router-link>
         </p>
@@ -63,6 +63,7 @@ export default {
             email: cachedEmail,
             password: '',
             token: '',
+            isSignUpEnabled: process.env.VUE_APP_ALLOW_SIGN_UP !== 'false',
             rememberEmail: !!cachedEmail,
             showMfaInput: false,
             loading: false,
