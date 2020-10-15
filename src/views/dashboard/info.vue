@@ -10,25 +10,20 @@
                     <p>{{ info.ip }}</p>
                 </div>
             </div>
-            <div class="clearfix"></div>
             <div class="spacer"></div>
             <hr/>
             <div class="spacer"></div>
             <div class="inline">
                 <p class="text-small">DISTRO</p>
-                <p class="float-left text-dark">{{ info.distro }}</p>
-                <div class="clearfix"></div>
+                <p class="text-dark">{{ info.distro }}</p>
                 <p class="text-small">RELEASE</p>
-                <p class="float-left text-dark">{{ info.release }}</p>
-                <div class="clearfix"></div>
+                <p class="text-dark">{{ info.release }}</p>
             </div>
             <div class="inline">
                 <p class="text-small">KERNEL</p>
-                <p class="float-left text-dark">{{ info.kernel }}</p>
-                <div class="clearfix"></div>
+                <p class="text-dark">{{ info.kernel }}</p>
                 <p class="text-small">ARCH</p>
-                <p class="float-left text-dark">{{ info.arch }}</p>
-                <div class="clearfix"></div>
+                <p class="text-dark">{{ info.arch }}</p>
             </div>
         </div>
         <LoadingGraphic v-else size="sm" />
