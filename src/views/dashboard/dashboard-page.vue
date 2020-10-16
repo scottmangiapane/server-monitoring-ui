@@ -2,8 +2,11 @@
     <div v-if="connectionState === states.LOADING" class="center">
         <LoadingGraphic size="lg" />
     </div>
-    <div v-else-if="connectionState === states.ERROR" class="center">
-        <p>Could not connect to API server.</p>
+    <div v-else-if="connectionState === states.ERROR" class="card text-center">
+        <h2 class="text-title">Error</h2>
+        <LoadingGraphic size="md" />
+        <div class="spacer"></div>
+        <p>Can't connect to API server.</p>
     </div>
     <div v-else-if="connectionState === states.OPEN" class="row">
         <div class="col-lg-5 offset-lg-1 col-md-8 offset-md-2">
