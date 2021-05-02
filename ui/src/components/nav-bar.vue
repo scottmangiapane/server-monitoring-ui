@@ -39,7 +39,7 @@ export default {
     },
     data() {
         return {
-            isSignUpEnabled: process.env.VUE_APP_ALLOW_SIGN_UP !== 'false',
+            isSignUpEnabled: process.env.ALLOW_SIGN_UP !== 'false',
             isDropdownOpen: false
         };
     },

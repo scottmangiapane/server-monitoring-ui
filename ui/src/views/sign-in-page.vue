@@ -63,7 +63,7 @@ export default {
             email: cachedEmail,
             password: '',
             token: '',
-            isSignUpEnabled: process.env.VUE_APP_ALLOW_SIGN_UP !== 'false',
+            isSignUpEnabled: process.env.ALLOW_SIGN_UP !== 'false',
             rememberEmail: !!cachedEmail,
             showMfaInput: false,
             loading: false,

@@ -3,7 +3,7 @@
         <LoadingGraphic size="lg" />
     </div>
     <div v-else-if="connectionState === states.ERROR" class="card text-center">
-        <h2 class="text-title">Error</h2>
+        <h1 class="text-title">Error</h1>
         <LoadingGraphic size="md" />
         <div class="spacer"></div>
         <p>Can't connect to API server.</p>

@@ -3,7 +3,7 @@ module.exports = {
         proxy: {
             '/api': {
                 pathRewrite: { '^/api': '/' },
-                target: process.env.VUE_APP_API
+                target: process.env.API_TARGET
             }
         }
     }
