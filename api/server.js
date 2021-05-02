@@ -59,15 +59,20 @@ router.use('/accounts', require('./api/routes/accounts'));
 router.use('/auth', require('./api/routes/auth'));
 router.use('/info', require('./api/routes/info'));
 
-app.use('/api', router);
-
-app.use((req, res) => {
+router.use((req, res) => {
     return res.status(404).json({ errors: [{ msg: 'Not found' }] });
 });
 
-app.use((err, req, res, next) => {
+router.use((err, req, res, next) => {
     console.error(err.stack);
     return res.status(500).json({ errors: [{ msg: 'Internal server error' }] });
+});
+
+app.use('/api', router);
+
+app.use(express.static('static'));
+app.get('*', (req, res) => {
+    return res.sendFile(__dirname + '/static/index.html');
 });
 
 app.listen(80, '0.0.0.0', () => console.log(`Server is running...`));
