@@ -90,7 +90,7 @@ export default {
     },
     watch: {
         nodes() {
-            this.drawChart()
+            this.drawChart();
         }
     }
 };

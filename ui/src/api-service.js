@@ -2,15 +2,11 @@ import axios from 'axios';
 import router from '@/router';
 
 axios.interceptors.response.use(res => res, err => {
-    const errors = err.response.data.errors;
-    const shouldSignIn = errors.filter(e => e.msg === 'Account not signed in').length;
-    return (shouldSignIn) ? _redirectToSignIn() : Promise.reject(err);
+    if (err.response.status === 401) {
+        _redirectToSignIn();
+    }
+    return Promise.reject(err);
 });
-
-const _getAccountId = () => {
-    const accountId = localStorage.getItem('id');
-    return accountId || _redirectToSignIn();
-};
 
 const _redirectToSignIn = () => {
     const path = router.currentRoute.path;
@@ -27,11 +23,21 @@ export default {
         return axios.post(url, payload).then(res => res.data);
     },
     deleteAccount() {
-        const url = `/api/accounts/${ _getAccountId() }`;
+        const accountId = localStorage.getItem('id');
+        if (!accountId) {
+            _redirectToSignIn();
+            return Promise.reject('Unknown account ID');
+        }
+        const url = `/api/accounts/${ accountId }`;
         return axios.delete(url).then(res => res.data);
     },
     getAccount() {
-        const url = `/api/accounts/${ _getAccountId() }`;
+        const accountId = localStorage.getItem('id');
+        if (!accountId) {
+            _redirectToSignIn();
+            return Promise.reject('Unknown account ID');
+        }
+        const url = `/api/accounts/${ accountId }`;
         return axios.get(url).then(res => res.data);
     },
     postAuthCredsEmail(payload) {

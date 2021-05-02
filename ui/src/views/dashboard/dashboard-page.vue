@@ -9,7 +9,7 @@
             <Time />
         </div>
         <div class="col-lg-5 offset-lg-0 col-md-8 offset-md-2">
-            <CpuUsage />
+            <!-- <CpuUsage /> -->
             <Cpu />
         </div>
     </div>
@@ -19,7 +19,7 @@
 import ApiService from '@/api-service';
 import LoadingGraphic from '@/components/loading-graphic.vue';
 import Cpu from '@/views/dashboard/cpu.vue';
-import CpuUsage from '@/views/dashboard/cpu-usage.vue';
+// import CpuUsage from '@/views/dashboard/cpu-usage.vue';
 import Info from '@/views/dashboard/info.vue';
 import Memory from '@/views/dashboard/memory.vue';
 import Time from '@/views/dashboard/time.vue';
@@ -30,7 +30,7 @@ export default {
     },
     components: {
         Cpu,
-        CpuUsage,
+        // CpuUsage,
         Info,
         LoadingGraphic,
         Memory,
