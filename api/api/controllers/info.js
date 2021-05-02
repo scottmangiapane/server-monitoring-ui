@@ -32,11 +32,9 @@ const dynamic = {
 
 const buildStaticObject = async () => {
     static.hostname = os.hostname();
-    if (process.env.HIDE_IP !== 'true') {
-        publicIp.v4().then(ip => {
-            static.ip = ip;
-        });
-    }
+    publicIp.v4().then(ip => {
+        static.ip = ip;
+    });
     si.osInfo(o => {
         static.arch = o.arch;
         static.distro = o.distro;

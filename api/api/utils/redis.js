@@ -2,7 +2,8 @@ const util = require('util');
 const redis = require('redis');
 
 const redisClient = redis.createClient({
-    host: 'redis'
+    host: 'redis',
+    password: process.env.REDIS_PASSWORD
 });
 
 const redisProxy = new Proxy(redisClient, {

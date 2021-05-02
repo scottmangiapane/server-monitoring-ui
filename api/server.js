@@ -31,12 +31,12 @@ app.set('trust proxy', true);
 app.use(session({
     cookie: {
         httpOnly: true,
-        maxAge: 10 * 60 * 1000,
-        secure: process.env.DEVELOPMENT !== 'true',
-        sameSite: process.env.DEVELOPMENT !== 'true'
+        maxAge: 1000 * 60 * 60 * 24,
+        secure: process.env.PRODUCTION === 'true',
+        sameSite: true
     },
     name: 'session',
-    proxy: process.env.DEVELOPMENT !== 'true',
+    proxy: process.env.PRODUCTION === 'true',
     resave: false,
     rolling: true,
     saveUninitialized: false,

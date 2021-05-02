@@ -34,8 +34,8 @@
                         required="required"
                         type="password"
                     />
-                    <input type="checkbox" v-model="rememberEmail">
-                    <label>Remember me</label>
+                    <input id="remember" type="checkbox" v-model="rememberEmail">
+                    <label for="remember">Remember me</label>
                 </div>
                 <p v-for="error in errors" :key="error.msg" class="text-error text-small">{{ error.msg }}</p>
                 <button v-if="loading" class="btn" type="submit" disabled>Loading...</button>
