@@ -1,4 +1,5 @@
 import axios from 'axios';
+import store from '@/store';
 import router from '@/router';
 
 axios.interceptors.response.use(res => res, err => {
@@ -20,7 +21,11 @@ const _redirectToSignIn = () => {
 export default {
     postAccounts(payload) {
         const url = '/api/accounts';
-        return axios.post(url, payload).then(res => res.data);
+        return axios.post(url, payload).then(res => {
+            localStorage.setItem('id', res.data.id);
+            store.dispatch('setAccount');
+            return res.data;
+        });
     },
     deleteAccount() {
         const accountId = localStorage.getItem('id');
@@ -58,11 +63,19 @@ export default {
     },
     postAuthSignIn(payload) {
         const url = '/api/auth/sign-in';
-        return axios.post(url, payload).then(res => res.data);
+        return axios.post(url, payload).then(res => {
+            localStorage.setItem('id', res.data.id);
+            store.dispatch('setAccount');
+            return res.data;
+        });
     },
     postAuthSignOut() {
         const url = '/api/auth/sign-out';
-        return axios.post(url).then(res => res.data);
+        return axios.post(url).then(res => {
+            localStorage.removeItem('id');
+            store.dispatch('clearAccount');
+            return res.data;
+        });
     },
     getDynamic(payload) {
         const url = '/api/info/dynamic';

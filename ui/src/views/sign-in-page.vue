@@ -55,7 +55,6 @@ import ApiService from '@/api-service';
 export default {
     async created() {
         await ApiService.postAuthSignOut();
-        this.$store.dispatch('clearAccount');
     },
     data() {
         const cachedEmail = localStorage.getItem('email');
@@ -81,7 +80,6 @@ export default {
                     password: this.password,
                     token: this.token || undefined
                 });
-                localStorage.setItem('id', res.id);
                 (this.rememberEmail)
                     ? localStorage.setItem('email', this.email)
                     : localStorage.removeItem('email');

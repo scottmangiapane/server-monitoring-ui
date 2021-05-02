@@ -1,32 +1,32 @@
 <template>
-    <ul v-if='account'>
-        <div class='float-left'>
-            <li><router-link to='/'>Dashboard</router-link></li>
+    <ul v-if="account">
+        <div class="float-left">
+            <li><router-link to="/">Dashboard</router-link></li>
         </div>
-        <div class='float-right'>
-            <li><button @click='toggleDropdown' class='dropdown dropdown-right' ref='button'>
+        <div class="float-right">
+            <li><button @click="toggleDropdown" class="dropdown dropdown-right" ref="button">
                 Account ▾
                 <div
-                    v-show='isDropdownOpen'
-                    v-closable='{ exclude: ["button"], handler: "closeDropdown" }'
-                    class='dropdown-window'
+                    v-show="isDropdownOpen"
+                    v-closable="{ exclude: ['button'], handler: 'closeDropdown' }"
+                    class="dropdown-window"
                 >
-                    <router-link to='/settings/account'>Settings</router-link>
-                    <router-link to='/sign-in'>Sign out</router-link>
+                    <router-link to="/settings/account">Settings</router-link>
+                    <router-link to="/sign-in">Sign out</router-link>
                 </div>
             </button></li>
         </div>
-        <div class='clearfix'></div>
+        <div class="clearfix"></div>
     </ul>
     <ul v-else>
-        <div class='float-left'>
-            <li><router-link to='/about'>About</router-link></li>
+        <div class="float-left">
+            <li><router-link to="/about">About</router-link></li>
         </div>
-        <div class='float-right'>
-            <li><router-link to='/sign-in'>Sign in</router-link></li>
-            <li v-if="isSignUpEnabled"><router-link class='btn' to='/sign-up' tag='button'>Sign up</router-link></li>
+        <div class="float-right">
+            <li><router-link to="/sign-in">Sign in</router-link></li>
+            <li v-if="isSignUpEnabled"><router-link class="btn" to="/sign-up" tag="button">Sign up</router-link></li>
         </div>
-        <div class='clearfix'></div>
+        <div class="clearfix"></div>
     </ul>
 </template>
 

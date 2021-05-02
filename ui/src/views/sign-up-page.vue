@@ -54,7 +54,6 @@ export default {
     },
     async created() {
         await ApiService.postAuthSignOut();
-        this.$store.dispatch('clearAccount');
     },
     data() {
         return {
